@@ -1,55 +1,39 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { Link } from "@heroui/link";
+import BlurText from "@/components/ReactBits/BlurText";
+import HomepageCard from "@/components/homepage-card";
+import Logo from "@/public/wcaquiz_logo.png"
+import '@/styles/homepage.css';
+
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
+    <section className="flex flex-col items-center justify-center gap-4 py-8 w-screen h-full">
+      <div className="flex flex-col items-center max-w-5xl text-center justify-center">
+        <img src={Logo.src} alt="WCAQuiz logo" className="w-1/2 floating-img"/>
+        <BlurText
+          text="Welcome to WCAQuiz"
+          animateBy="words"
+          direction="top"
+          className="text-6xl md:text-8xl justify-center items-center"
+        />
       </div>
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
+      <div className="text-center">
+        <p className="text-muted-foreground text-2xl">Choose a quiz mode</p>
       </div>
 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
+      <div className="mt-10 flex gap-4 lg:flex-row flex-col">
+        <Link href="/reveal" className="text-center">
+          <HomepageCard title="Reveal" description="This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt" image="https://placehold.co/200x200" />
+        </Link>
+        <Link href="/focus" className="text-center">
+          <HomepageCard title="Focus" description="This quiz is based on WCA images. You will have a completely blurred person image and 5 attempts to correctly guess a WCA person. Hints and less-blurry image will be given at every wrong attempt" image="https://placehold.co/200x200" />
+        </Link>
+        <Link href="/versus" className="text-center">
+          <HomepageCard title="Versus" description="Classic higher or lower quiz. You can choose a WCA event and person will appear. You will have to choose if the person on the right has an higher or lower official average time on that event" image="https://placehold.co/200x200" />
+        </Link>
       </div>
     </section>
   );

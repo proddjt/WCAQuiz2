@@ -1,0 +1,26 @@
+@keyframes flashShadow {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 200, 0, 0);
+  }
+  20% {
+    box-shadow: 0 0 6px rgba(255, 200, 0, 0.5);
+  }
+  40% {
+    box-shadow: 0 0 12px rgba(255, 200, 0, 0.8);
+  }
+  60% {
+    box-shadow: 0 0 8px rgba(255, 200, 0, 0.5);
+  }
+  80% {
+    box-shadow: 0 0 4px rgba(255, 200, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 200, 0, 0);
+  }
+}
+
+.flash-highlight {
+  animation: flashShadow 2s ease-in-out;
+  animation-iteration-count: 3;
+  border-radius: 14px;
+}
