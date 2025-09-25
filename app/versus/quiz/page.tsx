@@ -103,7 +103,7 @@ export default function VersusQuiz() {
                 </div>
             </section>
             <section className="flex justify-center items-center lg:flex-row flex-col lg:gap-50 gap-20">
-                <span onClick={() => {if(!isWrong) checkAnswer(person.result, secondPerson.result)}}>
+                <button onClick={() => {if(!isWrong) checkAnswer(person.result, secondPerson.result)}}>
                     <ProfileCard 
                         name={person.name}
                         title={person.id}
@@ -117,10 +117,10 @@ export default function VersusQuiz() {
                         time={person.result}
                         isShown
                     />
-                </span>
+                </button>
                 {
                     secondPerson && (
-                        <span onClick={() => {if(!isWrong) checkAnswer(secondPerson.result, person.result)}}>
+                        <button onClick={() => {if(!isWrong) checkAnswer(secondPerson.result, person.result)}}>
                             <ProfileCard 
                                 name={secondPerson.name}
                                 title={secondPerson.id}
@@ -134,7 +134,7 @@ export default function VersusQuiz() {
                                 time={secondPerson.result}
                                 isShown={isShown}
                             />
-                        </span>
+                        </button>
                     )
                 }
             </section>
