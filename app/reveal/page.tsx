@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import BlurText from "@/components/ReactBits/BlurText";
 import {Select, SelectItem, Button} from "@heroui/react";
@@ -24,7 +24,7 @@ export default function RevealPage() {
     {key: "md", label: "Medium", description: "The person selected must have minimum 20 competitions and must be between NR21 and NR50 in an event at least."},
     {key: "hd", label: "Hard", description: "The person selected must have minimum 15 competitions and must be between NR51 and NR100 in an event at least."},
   ]
-  
+
   const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
   const difficultyDescription = difficulty.find(d => d.key === selectedDifficulty)?.description ?? "";
 

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import ShinyText from "@/components/ReactBits/ShinyText";
 import {Spinner} from "@heroui/react";

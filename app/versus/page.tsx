@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import BlurText from "@/components/ReactBits/BlurText";
 import {Select, SelectItem, Button} from "@heroui/react";

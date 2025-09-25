@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Link } from "@heroui/link";
 import BlurText from "@/components/ReactBits/BlurText";

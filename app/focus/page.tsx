@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import BlurText from "@/components/ReactBits/BlurText";
-import {Select, SelectItem, Button} from "@heroui/react";
+import { Select, SelectItem, Button } from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import BlurText from "@/components/ReactBits/BlurText";
 
 export default function RevealPage() {
   const router = useRouter();

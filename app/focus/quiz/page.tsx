@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { fetchFocusPerson } from "@/app/lib/data";
 import { useSearchParams } from "next/navigation";
@@ -7,16 +7,12 @@ import { Card, CardBody } from "@heroui/card";
 import Flag from "react-world-flags";
 import { useDisclosure } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import LazyLoad from 'react-lazyload';
+import LazyLoad from "react-lazyload";
 
 import { MdPersonSearch } from "react-icons/md";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { RiTimerFill } from "react-icons/ri";
 import { FaInfoCircle } from "react-icons/fa";
-
-import { getIdYear } from "@/app/lib/functions";
-import { formatSecondsTime } from "@/app/lib/functions";
-import { checkRevealAnswer } from "@/app/lib/functions";
 
 import Loading from "./loading";
 import TimeTables from "@/components/Focus/TimesTable";
@@ -28,6 +24,10 @@ import SkipModale from "@/components/SkipModale";
 import RevealModale from "@/components/RevealModale";
 import SearchBar from "@/components/SearchBar";
 import FinalModale from "@/components/Reveal/FinalModale";
+
+import { getIdYear } from "@/app/lib/functions";
+import { formatSecondsTime } from "@/app/lib/functions";
+import { checkRevealAnswer } from "@/app/lib/functions";
 
 import '@/styles/quiz.css';
 

@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import ShinyText from "@/components/ReactBits/ShinyText";
-import {Spinner} from "@heroui/react";
+import { Spinner } from "@heroui/react";
 
 export default function Loading(){
     return(

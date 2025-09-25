@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { fetchRevealPerson } from "@/app/lib/data";
 import { useSearchParams } from "next/navigation";
