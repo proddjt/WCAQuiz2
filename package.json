@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@cubing/icons": "^3.0.5",
+    "@eslint/compat": "^1.4.0",
     "@heroui/accordion": "2.2.23",
     "@heroui/alert": "2.2.26",
     "@heroui/autocomplete": "2.3.28",
@@ -93,5 +94,6 @@
     "tailwind-variants": "3.1.1",
     "tailwindcss": "4.1.11",
     "typescript": "5.6.3"
-  }
+  },
+  "type": "module"
 }

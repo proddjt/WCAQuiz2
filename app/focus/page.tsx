@@ -4,7 +4,7 @@ import BlurText from "@/components/ReactBits/BlurText";
 import {Select, SelectItem, Button} from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export const mode = [
+export const modality = [
   {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
   {key: "europe", label: "Europe", description: "Only European people can be selected"},
   {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
@@ -17,7 +17,7 @@ export const mode = [
 export default function RevealPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState("IT");
-  const modeDescription = mode.find(m => m.key === selectedMode)?.description ?? "";
+  const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
 
   const startQuiz = () => {
     router.push(`/focus/quiz?mode=${selectedMode}`);
@@ -46,7 +46,7 @@ export default function RevealPage() {
         label="Choose mode"
         placeholder="Select a mode"
         >
-          {mode.map((mode) => (
+          {modality.map((mode) => (
             <SelectItem key={mode.key}>{mode.label}</SelectItem>
           ))}
         </Select>
