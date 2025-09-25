@@ -5,38 +5,41 @@ import {Select, SelectItem, Button} from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export const mode = [
-  {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
-  {key: "europe", label: "Europe", description: "Only European people can be selected"},
-  {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
-  {key: "africa", label: "Africa", description: "Only African people can be selected"},
-  {key: "north-america", label: "North America", description: "Only North American people can be selected"},
-  {key: "south-america", label: "South America", description: "Only South American people can be selected"},
-  {key: "world", label: "Worldwide", description: "All people can be selected"},
-];
-export const event = [
-  {key: "333", label: "3x3x3 Cube"},
-  {key: "222", label: "2x2x2 Cube"},
-  {key: "444", label: "4x4x4 Cube"},
-  {key: "555", label: "5x5x5 Cube"},
-  {key: "666", label: "6x6x6 Cube"},
-  {key: "777", label: "7x7x7 Cube"},
-  {key: "333bf", label: "3x3x3 Blindfolded"},
-  {key: "333fm", label: "3x3x3 Fewest Moves"},
-  {key: "333oh", label: "3x3x3 One-Handed"},
-  {key: "clock", label: "Clock"},
-  {key: "minx", label: "Megaminx"},
-  {key: "pyram", label: "Pyraminx"},
-  {key: "skewb", label: "Skewb"},
-  {key: "sq1", label: "Square-1"}
-];
+
 
 export default function VersusPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState("IT");
   const [selectedEvent, setSelectedEvent] = useState("333");
   const [selectedResult, setSelectedResult] = useState("single");
-  const modeDescription = mode.find(m => m.key === selectedMode)?.description ?? "";
+
+  const modality = [
+    {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
+    {key: "europe", label: "Europe", description: "Only European people can be selected"},
+    {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
+    {key: "africa", label: "Africa", description: "Only African people can be selected"},
+    {key: "north-america", label: "North America", description: "Only North American people can be selected"},
+    {key: "south-america", label: "South America", description: "Only South American people can be selected"},
+    {key: "world", label: "Worldwide", description: "All people can be selected"},
+  ];
+  const event = [
+    {key: "333", label: "3x3x3 Cube"},
+    {key: "222", label: "2x2x2 Cube"},
+    {key: "444", label: "4x4x4 Cube"},
+    {key: "555", label: "5x5x5 Cube"},
+    {key: "666", label: "6x6x6 Cube"},
+    {key: "777", label: "7x7x7 Cube"},
+    {key: "333bf", label: "3x3x3 Blindfolded"},
+    {key: "333fm", label: "3x3x3 Fewest Moves"},
+    {key: "333oh", label: "3x3x3 One-Handed"},
+    {key: "clock", label: "Clock"},
+    {key: "minx", label: "Megaminx"},
+    {key: "pyram", label: "Pyraminx"},
+    {key: "skewb", label: "Skewb"},
+    {key: "sq1", label: "Square-1"}
+  ];
+
+  const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
 
   const startQuiz = () => {
     router.push(`/versus/quiz?mode=${selectedMode}&event=${selectedEvent}&result=${selectedResult}`);
@@ -65,7 +68,7 @@ export default function VersusPage() {
         label="Choose mode"
         placeholder="Select a mode"
         >
-          {mode.map((mode) => (
+          {modality.map((mode) => (
             <SelectItem key={mode.key}>{mode.label}</SelectItem>
           ))}
         </Select>

@@ -4,26 +4,28 @@ import BlurText from "@/components/ReactBits/BlurText";
 import {Select, SelectItem, Button} from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export const mode = [
-  {key: "IT", label: "Italian Only", description: "Only Italian people will be shown"},
-  {key: "europe", label: "Europe", description: "Only European people will be shown"},
-  {key: "asia", label: "Asia", description: "Only Asian people will be shown"},
-  {key: "africa", label: "Africa", description: "Only African people will be shown"},
-  {key: "north-america", label: "North America", description: "Only North American people will be shown"},
-  {key: "south-america", label: "South America", description: "Only South American people will be shown"},
-  {key: "world", label: "Worldwide", description: "All people will be shown"},
-];
-export const difficulty = [
-  {key: "ez", label: "Easy", description: "The person selected must have minimum 30 competitions and must be NR20 or less in an event at least."},
-  {key: "md", label: "Medium", description: "The person selected must have minimum 20 competitions and must be between NR21 and NR50 in an event at least."},
-  {key: "hd", label: "Hard", description: "The person selected must have minimum 15 competitions and must be between NR51 and NR100 in an event at least."},
-]
 
 export default function RevealPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState("IT");
   const [selectedDifficulty, setSelectedDifficulty] = useState("md");
-  const modeDescription = mode.find(m => m.key === selectedMode)?.description ?? "";
+
+  const modality = [
+      {key: "IT", label: "Italian Only", description: "Only Italian people will be shown"},
+      {key: "europe", label: "Europe", description: "Only European people will be shown"},
+      {key: "asia", label: "Asia", description: "Only Asian people will be shown"},
+      {key: "africa", label: "Africa", description: "Only African people will be shown"},
+      {key: "north-america", label: "North America", description: "Only North American people will be shown"},
+      {key: "south-america", label: "South America", description: "Only South American people will be shown"},
+      {key: "world", label: "Worldwide", description: "All people will be shown"},
+    ];
+  const difficulty = [
+    {key: "ez", label: "Easy", description: "The person selected must have minimum 30 competitions and must be NR20 or less in an event at least."},
+    {key: "md", label: "Medium", description: "The person selected must have minimum 20 competitions and must be between NR21 and NR50 in an event at least."},
+    {key: "hd", label: "Hard", description: "The person selected must have minimum 15 competitions and must be between NR51 and NR100 in an event at least."},
+  ]
+  
+  const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
   const difficultyDescription = difficulty.find(d => d.key === selectedDifficulty)?.description ?? "";
 
   const startQuiz = () => {
@@ -53,7 +55,7 @@ export default function RevealPage() {
         label="Choose mode"
         placeholder="Select a mode"
         >
-          {mode.map((mode) => (
+          {modality.map((mode) => (
             <SelectItem key={mode.key}>{mode.label}</SelectItem>
           ))}
         </Select>

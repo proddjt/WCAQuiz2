@@ -4,19 +4,22 @@ import BlurText from "@/components/ReactBits/BlurText";
 import {Select, SelectItem, Button} from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export const modality = [
-  {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
-  {key: "europe", label: "Europe", description: "Only European people can be selected"},
-  {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
-  {key: "africa", label: "Africa", description: "Only African people can be selected"},
-  {key: "north-america", label: "North America", description: "Only North American people can be selected"},
-  {key: "south-america", label: "South America", description: "Only South American people can be selected"},
-  {key: "world", label: "Worldwide", description: "All people can be selected"},
-];
+
 
 export default function RevealPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState("IT");
+
+  const modality = [
+    {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
+    {key: "europe", label: "Europe", description: "Only European people can be selected"},
+    {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
+    {key: "africa", label: "Africa", description: "Only African people can be selected"},
+    {key: "north-america", label: "North America", description: "Only North American people can be selected"},
+    {key: "south-america", label: "South America", description: "Only South American people can be selected"},
+    {key: "world", label: "Worldwide", description: "All people can be selected"},
+  ];
+
   const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
 
   const startQuiz = () => {
