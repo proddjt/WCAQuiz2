@@ -101,13 +101,7 @@ export default function VersusQuiz() {
                 console.error('Errore nel secondo fetch:', error);
             }
         };
-        let check = true
-        while (!check){
-            fetchTemp();
-            if (secondPerson.id != tempPerson.id){
-                check = true;
-            }  
-        }
+        fetchTemp();
         } else {
         console.warn('Parametri mancanti: mode o event o result');
         }
