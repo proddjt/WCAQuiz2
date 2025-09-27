@@ -16,6 +16,7 @@ import FinalModale from "@/components/Versus/FinalModale";
 export default function VersusQuiz() {
     const [person, setPerson] = useState<any>(null);
     const [secondPerson, setSecondPerson] = useState<any>(null);
+    const [tempPerson, setTempPerson] = useState<any>(null);
     const [score, setScore] = useState(0);
     const [isCorrect, setIsCorrect] = useState(false);
     const [isWrong, setIsWrong] = useState(false);
@@ -36,6 +37,7 @@ export default function VersusQuiz() {
                 setIsCorrect(false);
                 setIsShown(false);
                 setPerson(secondPerson);
+                setSecondPerson(tempPerson);
             }, 3000)
         } else {
             stopGame();
@@ -74,19 +76,36 @@ export default function VersusQuiz() {
 
     useEffect(() => {
         if (mode && event && result) {
-        const fetchSecond = async () => {
+            if (secondPerson) return
+            const fetchSecond = async () => {
+                try {
+                const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
+                setSecondPerson(data);
+                } catch (error) {
+                    console.error('Errore nel fetch:', error);
+                }
+            };
+            fetchSecond();
+            } else {
+            console.warn('Parametri mancanti: mode o event o result o person.id');
+        }
+    }, [person]);
+
+    useEffect(() => {
+        if (mode && event && result) {
+        const fetchTemp = async () => {
             try {
-            const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
-            setSecondPerson(data);
+            const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
+            setTempPerson(data);
             } catch (error) {
                 console.error('Errore nel fetch:', error);
             }
         };
-        fetchSecond();
+        fetchTemp();
         } else {
-        console.warn('Parametri mancanti: mode o event o result o person.id');
+        console.warn('Parametri mancanti: mode o event o result');
         }
-    }, [person]);
+    }, [secondPerson]);
 
     if (!person) return <Loading />
 

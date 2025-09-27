@@ -257,12 +257,24 @@
 
 .pc-avatar-content .avatar {
   height: 100%;
+  width: 100%;
   position: absolute;
   object-fit: cover;
   left: 50%;
   transform: translateX(-50%) scale(1);
   bottom: 2px;
   opacity: calc(1.75 - var(--pointer-from-center));
+}
+
+.avatar {
+  transition: filter 0.5s ease, opacity 0.5s ease;
+  filter: blur(20px);
+  opacity: 0;
+}
+
+.avatar.loaded {
+  filter: blur(0);
+  opacity: 1;
 }
 
 .pc-avatar-content::before {

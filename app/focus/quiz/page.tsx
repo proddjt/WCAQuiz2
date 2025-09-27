@@ -22,7 +22,7 @@ import TimeAlert from "@/components/TimeAlert";
 import SkipAlert from "@/components/SkipAlert";
 import SkipModale from "@/components/SkipModale";
 import RevealModale from "@/components/RevealModale";
-import SearchBar from "@/components/SearchBar";
+import FocusSearchBar from "@/components/FocusSearchBar";
 import FinalModale from "@/components/Reveal/FinalModale";
 
 import { getIdYear } from "@/app/lib/functions";
@@ -233,7 +233,7 @@ export default function FocusPage() {
                     <p className="text-xl">Score: {6-attempts}</p>
                 </div>
                 <div className="lg:w-4/6 w-full lg:order-2 order-3">
-                    <SearchBar mode={mode} handleAnswer={handleAnswer} isSearchDisabled={isSearchDisabled}/>
+                    <FocusSearchBar mode={mode} handleAnswer={handleAnswer} isSearchDisabled={isSearchDisabled}/>
                 </div>
                 <div className="lg:w-1/6 w-full lg:order-3 order-2">
                     <p className="text-xl">Time: {formatSecondsTime(time)}</p>

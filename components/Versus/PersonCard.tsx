@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo, useState } from 'react';
 import './personcard.css';
 import { formatTime, getEventFullName } from '@/app/lib/functions';
 import LazyLoad from 'react-lazyload';
+import {Spinner} from "@heroui/react";
 
 interface ProfileCardProps {
   avatarUrl: string;
@@ -276,6 +277,16 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     [event, grainUrl, showBehindGradient, behindGradient, innerGradient]
   );
 
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setIsImageLoaded(false);
+      if (imgRef.current?.complete) {
+      setIsImageLoaded(true);
+    }
+  }, [avatarUrl]);
+
   return (
     <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
       <section ref={cardRef} className="pc-card">
@@ -283,12 +294,18 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           <div className="pc-shine" />
           <div className="pc-glare" />
           <div className="pc-content pc-avatar-content">
+            {
+              !isImageLoaded && <Spinner size='lg'/>
+            }
             <LazyLoad>
                 <img
-                className="avatar"
+                key={avatarUrl}
+                ref={imgRef}
+                className={`avatar ${isImageLoaded ? "loaded" : ""}`}
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"
+                onLoad={() => setIsImageLoaded(true)}
                 onError={e => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
