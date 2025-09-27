@@ -64,50 +64,49 @@ export default function VersusQuiz() {
             try {
             const data = await fetchVersusFirstPerson({ mode, event, result });
             setPerson(data);
+            console.log("Fetchato il primo: " + data?.name + " " + data?.result);
             } catch (error) {
                 console.error('Errore nel fetch:', error);
             }
         };
         fetchFirst();
         } else {
-        console.warn('Parametri mancanti: mode o event o result');
+            console.warn('Parametri mancanti: mode o event o result');
         }
     }, []);
 
     useEffect(() => {
         if (mode && event && result) {
-            if (secondPerson) return
             const fetchSecond = async () => {
                 try {
                 const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
                 setSecondPerson(data);
+                console.log("Fetchato il secondo: " + data?.name + " " + data?.result);
+                
                 } catch (error) {
-                    console.error('Errore nel primo fetch:', error);
+                    console.error('Errore nel secondo fetch:', error);
                 }
             };
-            fetchSecond();
+            const fetchTemp = async () => {
+                try {
+                    const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
+                    setTempPerson(data);
+                } catch (error) {
+                    console.error('Errore nel temporaneo fetch:', error);
+                }
+                };
+            if (!secondPerson){
+                fetchSecond();
             } else {
+                setSecondPerson(tempPerson);
+            }
+            fetchTemp();
+        } else {
             console.warn('Parametri mancanti: mode o event o result o person.id');
         }
-    }, [person]);
+    }, [person, person?.id]);
 
-    useEffect(() => {
-        if (mode && event && result) {
-        const fetchTemp = async () => {
-            try {
-            const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
-            setTempPerson(data);
-            } catch (error) {
-                console.error('Errore nel secondo fetch:', error);
-            }
-        };
-        fetchTemp();
-        } else {
-        console.warn('Parametri mancanti: mode o event o result');
-        }
-    }, [secondPerson]);
-
-    if (!person) return <Loading />
+    if (!person || !secondPerson) return <Loading />
 
     return (
         <>

@@ -127,9 +127,11 @@ export async function fetchVersusFirstPerson({mode, event, result}: {mode: strin
         const id = newData.items[Math.floor(Math.random()*newData.items.length)]["personId"];
         const defResponse = await fetch(`${officialUrl}${id}`);
         const defData = await defResponse.json();
+        const unofficialResponse = await fetch(`${unofficialUrl}/api/persons/${id}.json`);
+        const unofficialData = await unofficialResponse.json();
         person = {
-            id: defData.person.id,
-            name: defData.person.name,
+            id: defData.person.id || unofficialData.id,
+            name: defData?.person.name || unofficialData.name,
             result: defData.personal_records[event][result].best,
             has_avatar: !defData.person.avatar.is_default,
             avatarUrl: defData.person.avatar.url,
@@ -156,12 +158,14 @@ export async function fetchVersusSecondPerson({mode, event, result, firstPersonI
         const newData = await newResponse.json();
         const id = newData.items[Math.floor(Math.random()*newData.items.length)]["personId"];
         if (id != firstPersonID){
+            const unofficialResponse = await fetch(`${unofficialUrl}/api/persons/${id}.json`);
+            const unofficialData = await unofficialResponse.json();
             const defResponse = await fetch(`${officialUrl}${id}`);
             const defData = await defResponse.json();
             if (defData.personal_records[event][result].best != firstPersonResult){
                 person = {
-                    id: defData.person.id,
-                    name: defData.person.name,
+                    id: defData.person.id || unofficialData.id,
+                    name: defData?.person.name || unofficialData.name,
                     result: defData.personal_records[event][result].best,
                     has_avatar: !defData.person.avatar.is_default,
                     avatarUrl: defData.person.avatar.url,
