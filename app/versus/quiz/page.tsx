@@ -64,7 +64,6 @@ export default function VersusQuiz() {
             try {
             const data = await fetchVersusFirstPerson({ mode, event, result });
             setPerson(data);
-            console.log("Fetchato il primo: " + data?.name + " " + data?.result);
             } catch (error) {
                 console.error('Errore nel fetch:', error);
             }
@@ -81,8 +80,6 @@ export default function VersusQuiz() {
                 try {
                 const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
                 setSecondPerson(data);
-                console.log("Fetchato il secondo: " + data?.name + " " + data?.result);
-                
                 } catch (error) {
                     console.error('Errore nel secondo fetch:', error);
                 }
