@@ -82,7 +82,7 @@ export default function VersusQuiz() {
                 const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
                 setSecondPerson(data);
                 } catch (error) {
-                    console.error('Errore nel fetch:', error);
+                    console.error('Errore nel primo fetch:', error);
                 }
             };
             fetchSecond();
@@ -98,10 +98,16 @@ export default function VersusQuiz() {
             const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
             setTempPerson(data);
             } catch (error) {
-                console.error('Errore nel fetch:', error);
+                console.error('Errore nel secondo fetch:', error);
             }
         };
-        fetchTemp();
+        let check = true
+        while (!check){
+            fetchTemp();
+            if (secondPerson.id != tempPerson.id){
+                check = true;
+            }  
+        }
         } else {
         console.warn('Parametri mancanti: mode o event o result');
         }
