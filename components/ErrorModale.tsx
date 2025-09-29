@@ -8,7 +8,7 @@ export default function ErrorModale({isErrorOpen, onErrorOpenChange} : {isErrorO
                 <>
                 <ModalHeader className="flex flex-col gap-1">Ops! 😭</ModalHeader>
                 <ModalBody>
-                    <p>I'm sorry but something went wrong! 😣</p>
+                    <p>Sorry but something went wrong! 😣</p>
                     <p>Please reload the page</p>
                 </ModalBody>
                 <ModalFooter>
