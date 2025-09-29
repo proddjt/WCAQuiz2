@@ -12,6 +12,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { useDisclosure } from "@heroui/modal";
 import Modale from "@/components/Versus/Modale";
 import FinalModale from "@/components/Versus/FinalModale";
+import ErrorModale from "@/components/ErrorModale";
 
 export default function VersusQuiz() {
     const [person, setPerson] = useState<any>(null);
@@ -27,6 +28,7 @@ export default function VersusQuiz() {
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { isOpen: isFinalOpen, onOpen: onFinalOpen, onOpenChange: onFinalOpenChange } = useDisclosure();
+    const { isOpen: isErrorOpen, onOpen: onErrorOpen, onOpenChange: onErrorOpenChange } = useDisclosure();
 
     function checkAnswer(a: string, b: string){
         if (checkLower(a, b)){
@@ -65,7 +67,7 @@ export default function VersusQuiz() {
             const data = await fetchVersusFirstPerson({ mode, event, result });
             setPerson(data);
             } catch (error) {
-                console.error('Errore nel fetch:', error);
+                isErrorOpen;
             }
         };
         fetchFirst();
@@ -81,7 +83,7 @@ export default function VersusQuiz() {
                 const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
                 setSecondPerson(data);
                 } catch (error) {
-                    console.error('Errore nel secondo fetch:', error);
+                    isErrorOpen;
                 }
             };
             const fetchTemp = async () => {
@@ -89,7 +91,7 @@ export default function VersusQuiz() {
                     const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
                     setTempPerson(data);
                 } catch (error) {
-                    console.error('Errore nel temporaneo fetch:', error);
+                    isErrorOpen;
                 }
                 };
             if (!secondPerson){
@@ -157,6 +159,7 @@ export default function VersusQuiz() {
 
         <Modale isOpen={isOpen} onOpenChange={onOpenChange} />
         <FinalModale isFinalOpen={isFinalOpen} onFinalOpenChange={onFinalOpenChange} points={score} />
+        <ErrorModale isErrorOpen={isErrorOpen} onErrorOpenChange={onErrorOpenChange} />
 
         <CorrectAlert isCorrect={isCorrect} />
         </>
