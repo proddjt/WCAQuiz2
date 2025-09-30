@@ -1,14 +1,14 @@
 "use client";
-import PillNav from './ReactBits/PillNav';
-import logo from '@/public/World_Cube_Association_Logo.png'
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
+import PillNav from "./ReactBits/PillNav";
+import logo from "@/public/logo_little.png"
 
 export default function Navbar({quiz}: {quiz: string}) {
   const pathname = usePathname();
   return (
     <PillNav
       logo={logo.src}
-      logoAlt="Company Logo"
+      logoAlt="WCAQuiz Logo"
       items={[
         { label: 'Home', href: '/' },
         { label: 'Change mode', href: `/${quiz}` }

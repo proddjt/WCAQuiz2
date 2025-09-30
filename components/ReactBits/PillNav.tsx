@@ -262,7 +262,7 @@ const PillNav: React.FC<PillNavProps> = ({
             ref={el => {
               logoRef.current = el;
             }}
-            className="rounded-full p-2 inline-flex items-center justify-center overflow-hidden"
+            className="rounded-xl inline-flex items-center justify-center overflow-hidden"
             style={{
               width: 'var(--nav-h)',
               height: 'var(--nav-h)',

@@ -6,6 +6,7 @@ import HomepageCard from "@/components/homepage-card";
 import Logo from "@/public/wcaquiz_logo.png"
 import Versus from "@/public/versus.png"
 import Focus from "@/public/focus.png"
+import Reveal from "@/public/reveal.png"
 import '@/styles/homepage.css';
 
 
@@ -28,7 +29,7 @@ export default function Home() {
 
       <div className="mt-10 flex gap-4 lg:flex-row flex-col">
         <Link href="/reveal" className="text-center">
-          <HomepageCard title="Reveal" description="This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt" image="https://placehold.co/200x200" />
+          <HomepageCard title="Reveal" description="This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt" image={Reveal.src} />
         </Link>
         <Link href="/focus" className="text-center">
           <HomepageCard title="Focus" description="This quiz is based on WCA images. You will have a completely blurred person image and 5 attempts to correctly guess a WCA person. Hints and less-blurry image will be given at every wrong attempt" image={Focus.src} />
