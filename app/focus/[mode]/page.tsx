@@ -4,8 +4,8 @@ import { fetchFocusPerson } from "@/app/lib/data";
 import Loading from "./loading";
 import Focus from "@/components/Focus/Focus";
 
-export default async function FocusPage({params} : {params: {mode: string}}) {
-    const { mode } = await params;
+export default async function FocusPage(props: { params: Promise<{ mode: string }> }) {
+    const { mode } = await props.params;
     let person = null;
 
     if (mode) {

@@ -4,8 +4,8 @@ import { fetchRevealPerson } from "@/app/lib/data";
 import Loading from "./loading";
 import Reveal from "@/components/Reveal/Reveal";
 
-export default async function RevealQuiz({params} : {params: {mode: string, difficulty: string}}) {
-    const { mode, difficulty } = await params;
+export default async function RevealQuiz(props: { params: Promise<{ mode: string, difficulty: string }> }) {
+    const { mode, difficulty } = await props.params;
     let person = null
 
     if (mode && difficulty) {
