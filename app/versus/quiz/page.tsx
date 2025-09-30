@@ -67,7 +67,7 @@ export default function VersusQuiz() {
             const data = await fetchVersusFirstPerson({ mode, event, result });
             setPerson(data);
             } catch (error) {
-                isErrorOpen;
+                onErrorOpen();
             }
         };
         fetchFirst();
@@ -83,7 +83,7 @@ export default function VersusQuiz() {
                 const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
                 setSecondPerson(data);
                 } catch (error) {
-                    isErrorOpen;
+                    onErrorOpen();
                 }
             };
             const fetchTemp = async () => {
@@ -91,7 +91,7 @@ export default function VersusQuiz() {
                     const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
                     setTempPerson(data);
                 } catch (error) {
-                    isErrorOpen;
+                    onErrorOpen();
                 }
                 };
             if (!secondPerson){

@@ -22,7 +22,7 @@ export default function RevealPage() {
   const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
 
   const startQuiz = () => {
-    router.push(`/focus/quiz?mode=${selectedMode}`);
+    router.push(`/focus/${selectedMode}`);
   }
 
   return (

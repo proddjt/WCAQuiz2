@@ -29,7 +29,7 @@ export default function RevealPage() {
   const difficultyDescription = difficulty.find(d => d.key === selectedDifficulty)?.description ?? "";
 
   const startQuiz = () => {
-    router.push(`/reveal/quiz?mode=${selectedMode}&difficulty=${selectedDifficulty}`);
+    router.push(`/reveal/${selectedMode}/${selectedDifficulty}`);
   }
 
   return (

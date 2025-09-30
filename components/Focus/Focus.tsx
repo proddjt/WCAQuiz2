@@ -1,20 +1,18 @@
 "use client";
 
-import { fetchFocusPerson } from "@/app/lib/data";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Card, CardBody } from "@heroui/card";
 import Flag from "react-world-flags";
 import { useDisclosure } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import LazyLoad from "react-lazyload";
+import { FocusPerson } from "@/types";
 
 import { MdPersonSearch } from "react-icons/md";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { RiTimerFill } from "react-icons/ri";
 import { FaInfoCircle } from "react-icons/fa";
 
-import Loading from "./loading";
 import TimeTables from "@/components/Focus/TimesTable";
 import Modale from "@/components/Focus/Modale";
 import ErrorAlert from "@/components/ErrorAlert";
@@ -29,11 +27,8 @@ import { getIdYear } from "@/app/lib/functions";
 import { formatSecondsTime } from "@/app/lib/functions";
 import { checkRevealAnswer } from "@/app/lib/functions";
 
-import '@/styles/quiz.css';
+export default function Focus ({person, mode} : {person: FocusPerson, mode: string | null}) {
 
-export default function FocusPage() {
-    const mode = useSearchParams().get("mode");
-    const [person, setPerson] = useState<any>(null);
     const [time, setTime] = useState(60);
     const [attempts, setAttempts] = useState(1);
 
@@ -175,22 +170,6 @@ export default function FocusPage() {
     }
 
     useEffect(() => {
-        if (mode) {
-        const fetchData = async () => {
-            try {
-            const data = await fetchFocusPerson({ mode });
-            setPerson(data);
-            } catch (error) {
-                console.error('Errore nel fetch:', error);
-            }
-        };
-        fetchData();
-        } else {
-        console.warn('Parametro mancante: mode');
-        }
-    }, []);
-
-    useEffect(() => {
         if (attempts === 6) return;
         if (time === 0) {
             timeFinished();
@@ -224,8 +203,6 @@ export default function FocusPage() {
         hints();
     }, [attempts]);
 
-    if (!person) return <Loading />
-    
     return (
         <div className="flex justify-center items-center flex-col gap-5 select-none w-full">
             <section className="w-full flex lg:flex-row flex-col justify-center lg:items-end items-center">

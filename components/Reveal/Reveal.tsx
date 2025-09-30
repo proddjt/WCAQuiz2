@@ -1,14 +1,11 @@
 "use client";
 
-import { fetchRevealPerson } from "@/app/lib/data";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { checkRevealAnswer, formatSecondsTime, getIdYear } from "@/app/lib/functions";
 import LazyLoad from 'react-lazyload';
 
 import Flag from 'react-world-flags'
 import {Card, CardBody, Button, useDisclosure} from "@heroui/react";
-import Loading from "./loading";
 import CompTable from "@/components/Reveal/CompTable";
 import MedalTable from "@/components/Reveal/MedalTable";
 import RecordTable from "@/components/Reveal/RecordTable";
@@ -30,11 +27,9 @@ import RevealModale from "@/components/RevealModale";
 import FinalModale from "@/components/Reveal/FinalModale";
 
 import '@/styles/quiz.css';
+import { RevealPerson } from "@/types";
 
-export default function RevealQuiz(){
-    const [person, setPerson] = useState<any>(null);
-    const mode = useSearchParams().get("mode");
-    const difficulty = useSearchParams().get("difficulty");
+export default function Reveal({person, mode} : {person: RevealPerson, mode: string | null}) {
     const [year, setYear] = useState<string>("");
     const [rest, setRest] = useState<string>("");
     
@@ -206,22 +201,6 @@ export default function RevealQuiz(){
     }, [time]);
 
     useEffect(() => {
-        if (mode && difficulty) {
-        const fetchData = async () => {
-            try {
-            const data = await fetchRevealPerson({ mode, difficulty });
-            setPerson(data);
-            } catch (error) {
-                console.error('Errore nel fetch:', error);
-            }
-        };
-        fetchData();
-        } else {
-        console.warn('Parametri mancanti: mode o difficulty');
-        }
-    }, []);
-
-    useEffect(() => {
         if (person){
             const [y, r] = getIdYear(person?.id);
             setYear(y);
@@ -252,8 +231,6 @@ export default function RevealQuiz(){
     useEffect(() => {
         hints();
     }, [attempts]);
-    
-    if (!person) return <Loading />
     
     return(
         <div className="flex justify-center items-center flex-col gap-3 select-none w-full">
