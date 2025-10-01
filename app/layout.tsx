@@ -70,15 +70,20 @@ export default function RootLayout({
             <main className="pt-16 px-4 flex-grow h-full flex justify-center items-center">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3 mt-10">
+            <footer className="w-full flex items-center justify-center py-3 mt-10 gap-2">
               <Link
                 isExternal
-                className="flex items-center gap-1 text-current"
+                className="flex items-center gap-1 text-current text-sm"
                 href="https://github.com/proddjt"
                 title="giovanni tramontano github profile"
               >
                 <span className="text-default-600">Powered by</span>
                 <p className="text-primary">Giovanni Tramontano</p>
+              </Link>
+              <span>|</span>
+              <Link isExternal className="flex items-center gap-1 text-current text-sm" title="carmen gravano contact" href="mailto:carmen.grav998@gmail.com">
+                <span className="text-default-600">Graphics by</span>
+                <p className="text-primary">Carmen Gravano</p>
               </Link>
             </footer>
           </div>
