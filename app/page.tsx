@@ -35,7 +35,7 @@ export default function Home() {
           <HomepageCard title="Focus" description="This quiz is based on WCA images. You will have a completely blurred person image and 5 attempts to correctly guess a WCA person. Hints and less-blurry image will be given at every wrong attempt" image={Focus.src} animation="gentle-drift"/>
         </Link>
         <Link href="/versus" className="text-center">
-          <HomepageCard title="Versus" description="Classic higher or lower quiz. You can choose a WCA event and person will appear. You will have to choose if the person on the right has an higher or lower official average time on that event" image={Versus.src} animation="wind-sway"/>
+          <HomepageCard title="Versus" description="Sort of higher or lower quiz. You can choose a WCA event and person will appear. You will have to choose if the person on the right has a lower official average or single time on that event" image={Versus.src} animation="wind-sway"/>
         </Link>
       </div>
     </section>
