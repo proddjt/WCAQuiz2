@@ -34,7 +34,18 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <title>WCAQuiz</title>
+        <meta name="description" content="Various quiz based on WCA world"></meta>
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="UTF-8" />
+        <link rel="canonical" href="https://wcaquiz.vercel.app" />
+        <meta property="og:title" content="WCAQuiz" />
+        <meta property="og:description" content="Various quiz based on WCA world" />
+        <meta property="og:url" content="https://wcaquiz.vercel.app" />
+        <meta name="google-site-verification" content="s3PPuEct8UujjcNF4F4fX78TGJEo7E4TfehbiJTqWUs" />
+      </head>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-transparent font-sans antialiased",
