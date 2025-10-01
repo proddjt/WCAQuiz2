@@ -227,7 +227,7 @@ export default function Focus ({person, mode} : {person: FocusPerson, mode: stri
                 }
                 <Button isIconOnly size="sm" variant="ghost" onPress={onOpen}><FaInfoCircle /></Button>
             </h2>
-            <LazyLoad>
+            <LazyLoad className="flex justify-center items-center">
                 <img src={person?.avatarUrl} alt="Avatar" className={`lg:h-[600px] lg:w-auto w-8/10 ${blur} ${blackWhite ? "grayscale" : ""} my-20`}/>
             </LazyLoad>
             <h3 className="font-semibold text-2xl mt-5 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">PERSONAL INFO <MdPersonSearch /></h3>
