@@ -14,13 +14,15 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 w-screen h-full">
       <div className="flex flex-col items-center max-w-5xl text-center justify-center">
-        <img src={Logo.src} alt="WCAQuiz logo" className="w-1/2 floating-img"/>
-        <BlurText
-          text="Welcome to WCAQuiz"
-          animateBy="words"
-          direction="top"
-          className="text-6xl md:text-8xl justify-center items-center"
-        />
+        <img src={Logo.src} alt="WCAQuiz logo" className="w-1/2 floating-img" title="WCAQuiz logo"/>
+        <h1>
+          <BlurText
+            text="Welcome to WCAQuiz"
+            animateBy="words"
+            direction="top"
+            className="text-6xl md:text-8xl justify-center items-center"
+          />
+        </h1>
       </div>
 
       <div className="text-center">
