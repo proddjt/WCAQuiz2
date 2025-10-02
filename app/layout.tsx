@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  alternates: {
+    canonical: siteConfig.canonicalUrl,
+  },
+  verification: {
+    google: siteConfig.googleVerification,
+},
 };
 
 export const viewport: Viewport = {
@@ -34,15 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head>
-        <title>WCAQuiz</title>
-        <meta name="description" content="Various quiz based on WCA world"></meta>
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="UTF-8" />
-        <link rel="canonical" href="https://wcaquiz.vercel.app" />
-        <meta name="google-site-verification" content="s3PPuEct8UujjcNF4F4fX78TGJEo7E4TfehbiJTqWUs" />
-      </head>
+      <head/>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-transparent font-sans antialiased",
