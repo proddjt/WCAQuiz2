@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://wcaquiz.vercel.app',
+  siteUrl: process.env.SITE_URL || 'https://wcaquiz.xyz',
   generateRobotsTxt: true,
 }

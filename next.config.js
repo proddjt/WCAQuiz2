@@ -15,8 +15,8 @@ const nextConfig = {
       },
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'www.wcaquiz.vercel.app' }],
-        destination: 'https://wcaquiz.vercel.app/:path*',
+        has: [{ type: 'host', value: 'www.wcaquiz.xyz' }],
+        destination: 'https://wcaquiz.xyz/:path*',
         permanent: true,
       },
     ];

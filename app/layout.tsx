@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "https://wcaquiz.vercel.app/og-image.jpg",
+        url: "https://wcaquiz.xyz/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "WCAQuiz preview",
