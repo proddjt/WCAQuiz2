@@ -21,13 +21,14 @@ export default function Home() {
           direction="top"
           className="text-6xl md:text-8xl justify-center items-center"
         />
+        <h2 className="mt-2 mb-8 lg:text-lg text-sm italic font-semibold">How much do you know about WCA? Choose between 3 different quiz modes and see how well you know your WCA friends!</h2>
       </div>
 
       <div className="text-center">
         <p className="text-muted-foreground text-2xl">Choose a quiz mode</p>
       </div>
 
-      <div className="mt-10 flex gap-8 lg:flex-row flex-col">
+      <div className="mt-5 flex gap-8 lg:flex-row flex-col">
         <Link href="/reveal" className="text-center">
           <HomepageCard title="Reveal" description="This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt" image={Reveal.src} animation="float-breeze"/>
         </Link>
