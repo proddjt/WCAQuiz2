@@ -29,7 +29,7 @@ Nessuno dei due è affiliato ufficialmente con il team WCA.
 ## Live
 
 L'app è disponibile online all'indirizzo:  
-[https://wcaquiz.vercel.app](https://wcaquiz.vercel.app)
+[https://wcaquiz.xyz](https://wcaquiz.xyz)
 
 ## Contatti
 

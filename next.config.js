@@ -13,12 +13,6 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.wcaquiz.xyz' }],
-        destination: 'https://wcaquiz.xyz/:path*',
-        permanent: true,
-      },
     ];
   },
 };
