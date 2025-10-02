@@ -4,9 +4,9 @@ import { Link } from "@heroui/link";
 import BlurText from "@/components/ReactBits/BlurText";
 import HomepageCard from "@/components/homepage-card";
 import Logo from "@/public/wcaquiz_logo.png"
-import Versus from "@/public/versus.png"
-import Focus from "@/public/focus.png"
-import Reveal from "@/public/reveal.png"
+import Versus from "@/public/versus.jpeg"
+import Focus from "@/public/focus.jpeg"
+import Reveal from "@/public/reveal.jpeg"
 import '@/styles/homepage.css';
 
 
@@ -21,7 +21,7 @@ export default function Home() {
           direction="top"
           className="text-6xl md:text-8xl justify-center items-center"
         />
-        <h2 className="mt-2 mb-8 lg:text-lg text-sm italic font-semibold">How much do you know about WCA? Choose between 3 different quiz modes and see how well you know your WCA friends!</h2>
+        <h2 className="mt-2 mb-8 lg:text-lg text-sm italic font-semibold">How much do you know about World Cubing Association? Choose between 3 different quiz modes and see how well you know your WCA friends!</h2>
       </div>
 
       <div className="text-center">

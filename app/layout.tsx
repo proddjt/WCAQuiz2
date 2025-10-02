@@ -24,7 +24,22 @@ export const metadata: Metadata = {
   },
   verification: {
     google: siteConfig.googleVerification,
-},
+  },
+  openGraph: {
+    type: "website",
+    url: siteConfig.canonicalUrl,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "https://wcaquiz.vercel.app/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "WCAQuiz preview",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {

@@ -125,7 +125,7 @@ export default function VersusQuiz() {
                         name={person.name}
                         title={person.id}
                         handle={person.country_name}
-                        avatarUrl={person.has_avatar ? person.avatarUrl : `/user_placeholder.png`}
+                        avatarUrl={person.has_avatar ? person.avatarUrl : `/user_placeholder.jpeg`}
                         event={event}
                         enableTilt={true}
                         enableMobileTilt={false}
@@ -142,7 +142,7 @@ export default function VersusQuiz() {
                                 name={secondPerson.name}
                                 title={secondPerson.id}
                                 handle={secondPerson.country_name}
-                                avatarUrl={secondPerson.has_avatar ? secondPerson.avatarUrl : `/user_placeholder.png`}
+                                avatarUrl={secondPerson.has_avatar ? secondPerson.avatarUrl : `/user_placeholder.jpeg`}
                                 event={event}
                                 enableTilt={true}
                                 enableMobileTilt={false}
