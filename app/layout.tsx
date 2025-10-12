@@ -56,7 +56,21 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head/>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              url: "https://wcaquiz.xyz",
+              name: "WCAQuiz",
+              description: "An independent web-app based on World Cube Association world. It allows you to play various quizzes based on WCA data.",
+              image: "https://wcaquiz.xyz/og-image.jpg",
+            }),
+          }}
+        />
+      </head>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-transparent font-sans antialiased",

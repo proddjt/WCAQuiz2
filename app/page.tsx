@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 w-screen h-full">
       <div className="flex flex-col items-center max-w-5xl text-center justify-center">
-        <img src={Logo.src} alt="WCAQuiz logo" className="w-1/2 floating-img" title="WCAQuiz logo"/>
+        <img src={Logo.src} alt="WCAQuiz logo" className="lg:w-1/2 w-8/10 floating-img" title="WCAQuiz logo"/>
         <BlurText
           text="Welcome to WCAQuiz"
           animateBy="words"
