@@ -36,7 +36,7 @@ export default function Footer(){
                 <span className="text-default-600">Graphics by</span>
                 <p className="text-primary">Carmen Gravano</p>
             </Link>
-            <Select className="w-1/15" variant="underlined" selectedKeys={new Set([selectedValue])} onSelectionChange={(key) => handleLangChange(Array.from(key)[0])}>
+            <Select className="2xl:w-1/15 w-1/3 xl:w-1/10" variant="underlined" selectedKeys={new Set([selectedValue])} onSelectionChange={(key) => handleLangChange(Array.from(key)[0])}>
                 <SelectItem key="it">Italiano</SelectItem>
                 <SelectItem key="us">English</SelectItem>
             </Select>
