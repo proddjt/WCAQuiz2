@@ -4,6 +4,7 @@ import {
   AutocompleteItem
 } from "@heroui/react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -11,6 +12,7 @@ export default function SearchBar({ mode, handleAnswer, isSearchDisabled }: { mo
   const [results, setResults] = useState<any[]>([]);
   const [term, setTerm] = useState("");
   const [searching, setSearching] = useState(false);
+  const {t} = useTranslation();
 
   function sendAnswer(answer: any) {
     if (!answer) return;
@@ -35,9 +37,9 @@ export default function SearchBar({ mode, handleAnswer, isSearchDisabled }: { mo
 
   return (
     <Autocomplete
-      label="Search for a person"
+      label={t("searchbar_label")}
       labelPlacement="outside-top"
-      placeholder="Search..."
+      placeholder={t("searchbar_placeholder")}
       startContent={<FaSearch className="text-default-400 flex-shrink-0" />}
       className="w-full lg:max-w-2xl max-w-xs]"
       color="warning"

@@ -3,6 +3,7 @@ import './personcard.css';
 import { formatTime, getEventFullName } from '@/app/lib/functions';
 import LazyLoad from 'react-lazyload';
 import {Spinner} from "@heroui/react";
+import { useTranslation } from 'react-i18next';
 
 interface ProfileCardProps {
   avatarUrl: string;
@@ -279,6 +280,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const {t} = useTranslation();
 
   useEffect(() => {
     setIsImageLoaded(false);
@@ -317,7 +319,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 <div className="pc-user-details">
                   <div className="pc-user-text">
                     <div className="pc-handle flex justify-center items-center">
-                        <p className={isShown ? "" : "blur-sm"}>{getEventFullName(event)} {result === "single" ? "Single" : "Average"}: {formatTime(time, event)}</p>
+                        <p className={isShown ? "" : "blur-sm"}>{getEventFullName(event)} {result === "single" ? t("single") : t("single")}: {formatTime(time, event)}</p>
                     </div>
                   </div>
                 </div>

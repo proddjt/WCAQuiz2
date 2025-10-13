@@ -1,6 +1,8 @@
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 export default function InfoModale({isOpen, onOpenChange, title, info} : {isOpen: any, onOpenChange: any, title: string, info: string}) {
+    const {t} = useTranslation();
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="md">
             <ModalContent>
@@ -12,7 +14,7 @@ export default function InfoModale({isOpen, onOpenChange, title, info} : {isOpen
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" variant="ghost" onPress={onClose}>
-                        Close
+                        {t("close")}
                     </Button>
                 </ModalFooter>
                 </>

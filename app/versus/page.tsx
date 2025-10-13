@@ -5,7 +5,7 @@ import {Select, SelectItem, Button} from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-
+import { useTranslation } from "react-i18next";
 
 export default function VersusPage() {
   const router = useRouter();
@@ -13,14 +13,16 @@ export default function VersusPage() {
   const [selectedEvent, setSelectedEvent] = useState("333");
   const [selectedResult, setSelectedResult] = useState("single");
 
-  const modality = [
-    {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
-    {key: "europe", label: "Europe", description: "Only European people can be selected"},
-    {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
-    {key: "africa", label: "Africa", description: "Only African people can be selected"},
-    {key: "north-america", label: "North America", description: "Only North American people can be selected"},
-    {key: "south-america", label: "South America", description: "Only South American people can be selected"},
-    {key: "world", label: "Worldwide", description: "All people can be selected"},
+  const {t} = useTranslation();
+
+const modality = [
+    {key: "IT", label: "Italian Only", description: t("it_desc")},
+    {key: "europe", label: "Europe", description: t("eu_desc")},
+    {key: "asia", label: "Asia", description: t("as_desc")},
+    {key: "africa", label: "Africa", description: t("af_desc")},
+    {key: "north-america", label: "North America", description: t("na_desc")},
+    {key: "south-america", label: "South America", description: t("sa_desc")},
+    {key: "world", label: "Worldwide", description: t("world_desc")},
   ];
   const event = [
     {key: "333", label: "3x3x3 Cube"},
@@ -48,7 +50,7 @@ export default function VersusPage() {
   return (
     <div className="flex justify-center items-center flex-col">
       <BlurText
-          text="Choose quiz mode and event"
+          text={t("versus_choose")}
           animateBy="words"
           direction="top"
           className="text-3xl md:text-6xl justify-center items-center"
@@ -65,8 +67,8 @@ export default function VersusPage() {
         description={modeDescription}
         defaultSelectedKeys={["IT"]}
         disallowEmptySelection={true}
-        label="Choose mode"
-        placeholder="Select a mode"
+        label={t("form_mode")}
+        placeholder={t("form_mode_placeholder")}
         >
           {modality.map((mode) => (
             <SelectItem key={mode.key}>{mode.label}</SelectItem>
@@ -81,8 +83,8 @@ export default function VersusPage() {
         }}
         defaultSelectedKeys={["333"]}
         disallowEmptySelection={true}
-        label="Choose event"
-        placeholder="Select an event"
+        label={t("form_event")}
+        placeholder={t("form_event_placeholder")}
         startContent={<span className={`cubing-icon event-${selectedEvent}`}></span>}
         >
           {event.map((event) => (
@@ -98,16 +100,16 @@ export default function VersusPage() {
         }}
         defaultSelectedKeys={["single"]}
         disallowEmptySelection={true}
-        label="Choose result type"
-        placeholder="Select a type"
+        label={t("form_result")}
+        placeholder={t("form_result_placeholder")}
         >
-          <SelectItem key="single">Single</SelectItem>
-          <SelectItem key="average">Average</SelectItem>
+          <SelectItem key="single">{t("single")}</SelectItem>
+          <SelectItem key="average">{t("average")}</SelectItem>
         </Select>
       </div>
       <div className="flex justify-center w-full">
         <Button color="primary" className="lg:w-1/4 w-1/2 lg:mt-0 mt-5" variant="ghost" onPress={startQuiz}>
-          Start quiz
+          {t("start")}
         </Button>
       </div>
     </div>

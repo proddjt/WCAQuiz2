@@ -1,10 +1,12 @@
 import { Card, CardFooter, Image, Button, Tooltip } from "@heroui/react";
 import { useDisclosure } from "@heroui/modal";
 import InfoModale from "./InfoModale";
+import { useTranslation } from "react-i18next";
 
 export default function HomepageCard({title, description, image, animation}: {title: string, description: string, image: string, animation: string}) {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     const { isOpen, onOpenChange, onOpen } = useDisclosure();
+    const {t} = useTranslation();
     return (
       <>
         <Card isFooterBlurred className={`border-none ${animation} hover:scale-105`} radius="lg">
@@ -23,7 +25,7 @@ export default function HomepageCard({title, description, image, animation}: {ti
               <Tooltip
                 content={
                     <div className="px-1 py-2">
-                    <div className="text-small font-bold">Description</div>
+                    <div className="text-small font-bold">{t("description")}</div>
                     <div className="text-tiny">{description}</div>
                     </div>
                 }

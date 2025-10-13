@@ -1,16 +1,18 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@heroui/react";
 import { formatTime, getEventFullName } from "@/app/lib/functions";
 import '@/styles/quiz.css'
+import { useTranslation } from "react-i18next";
 
 export default function TimeTables({times, showTime} : {times: any, showTime: boolean}) {
+    const { t } = useTranslation();
     return (
         <Table isStriped aria-labelledby="Times table" className={showTime ? 'flash-highlight' : ''}>
             <TableHeader>
-                <TableColumn className="lg:text-lg text-xs text-center">Event</TableColumn>
+                <TableColumn className="lg:text-lg text-xs text-center">{t("event")}</TableColumn>
                 <TableColumn className="lg:text-lg text-xs text-center">NR</TableColumn>
                 <TableColumn className="lg:text-lg text-xs text-center">CR</TableColumn>
                 <TableColumn className="lg:text-lg text-xs text-center">WR</TableColumn>
-                <TableColumn className="lg:text-lg text-xs text-center">Result</TableColumn>
+                <TableColumn className="lg:text-lg text-xs text-center">{t("result")}</TableColumn>
             </TableHeader>
             <TableBody>
                 {
@@ -23,7 +25,7 @@ export default function TimeTables({times, showTime} : {times: any, showTime: bo
                             <TableCell className="lg:text-lg text-xs text-center"><span className={showTime ? '' : 'blur-lg'}>{event.country_rank ?? '-'}</span></TableCell>
                             <TableCell className="lg:text-lg text-xs text-center"><span className={showTime ? '' : 'blur-lg'}>{event.continent_rank ?? '-'}</span></TableCell>
                             <TableCell className="lg:text-lg text-xs text-center"><span className={showTime ? '' : 'blur-lg'}>{event.world_rank ?? '-'}</span></TableCell>
-                            <TableCell className="lg:text-lg text-xs text-center"><span className={showTime ? '' : 'blur-lg'}>{event.best ? formatTime(event.best, event.event_id) : '-'} {event.type === "average" ? "(Average)" : "(Single)"}</span></TableCell>
+                            <TableCell className="lg:text-lg text-xs text-center"><span className={showTime ? '' : 'blur-lg'}>{event.best ? formatTime(event.best, event.event_id) : '-'} {event.type === "average" ? `(${t("average")})` : `(${t("single")})`}</span></TableCell>
                         </TableRow>
                     ))
                 }

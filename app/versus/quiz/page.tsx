@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import { fetchVersusFirstPerson, fetchVersusSecondPerson } from "@/app/lib/data";
 import Loading from "./loading";
 import ProfileCard from "@/components/Versus/PersonCard";
@@ -25,6 +26,8 @@ export default function VersusQuiz() {
     const mode = useSearchParams().get("mode");
     const event = useSearchParams().get("event");
     const result = useSearchParams().get("result");
+
+    const { t } = useTranslation();
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { isOpen: isFinalOpen, onOpen: onFinalOpen, onOpenChange: onFinalOpenChange } = useDisclosure();
@@ -113,9 +116,9 @@ export default function VersusQuiz() {
         <div className="flex justify-center items-center lg:gap-5 gap-10 flex-col">
             <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isWrong}>Start new</Button>
             <section className="flex justify-center items-center gap-5 flex-col">
-                <h2 className="font-bold lg:text-5xl text-xl">SCORE: {score}</h2>
+                <h2 className="font-bold lg:text-5xl text-xl">{t("score")}: {score}</h2>
                 <div className="flex justify-center items-center lg:gap-5 gap-1 lg:flex-row flex-col">
-                    <h2 className="font-bold lg:text-5xl text-xl">Who has a lower official {result} in {getEventFullName(event)}?</h2>
+                    <h2 className="font-bold lg:text-5xl text-xl">{result === "single" ? t("versus_heading_single") : t("versus_heading_average")} {getEventFullName(event)}?</h2>
                     <Button isIconOnly size="sm" variant="ghost" onPress={onOpen}><FaInfoCircle /></Button>
                 </div>
             </section>

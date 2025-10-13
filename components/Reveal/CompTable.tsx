@@ -1,12 +1,14 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@heroui/react";
 import { sortEventsByYearAndName } from '@/app/lib/functions';
+import { useTranslation } from "react-i18next";
 
 export default function CompTable({ ids, showCompsList }: { ids: string[], showCompsList: boolean }) {
+    const {t} = useTranslation();
     if (!showCompsList){
         return (
             <Table isStriped aria-label="Competition table" className={`${showCompsList ? "flash-highlight" : ""} h-[250px] w-full`}>
                 <TableHeader>
-                    <TableColumn>Competition Name</TableColumn>
+                    <TableColumn>{t("comp_name")}</TableColumn>
                 </TableHeader>
                 <TableBody className="bg-[#EEEEEE]" emptyContent={"Hidden"}>
                     {[]}
@@ -19,11 +21,11 @@ export default function CompTable({ ids, showCompsList }: { ids: string[], showC
         return (
             <Table isStriped aria-label="Competition table" className={`${showCompsList ? "flash-highlight" : ""} h-[250px] w-full`}>
                 <TableHeader>
-                    <TableColumn>Competition Name</TableColumn>
+                    <TableColumn>{t("comp_name")}</TableColumn>
                 </TableHeader>
                 <TableBody className="bg-[#EEEEEE]">
                     <TableRow>
-                        <TableCell>No competitions</TableCell>
+                        <TableCell>{t("no_comp")}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
@@ -33,7 +35,7 @@ export default function CompTable({ ids, showCompsList }: { ids: string[], showC
     return (
         <Table isStriped aria-label="Competition table" className={`${showCompsList ? "flash-highlight" : ""} h-[250px] w-full`}>
             <TableHeader>
-                <TableColumn>Competition Name</TableColumn>
+                <TableColumn>{t("comp_name")}</TableColumn>
             </TableHeader>
             <TableBody className="bg-[#EEEEEE]">
                 {

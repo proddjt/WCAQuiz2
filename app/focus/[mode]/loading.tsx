@@ -2,12 +2,14 @@
 
 import { Spinner } from "@heroui/react";
 import ShinyText from "@/components/ReactBits/ShinyText";
+import { useTranslation } from "react-i18next";
 
 export default function Loading(){
+    const {t} = useTranslation();
     return(
         <div className="flex justify-center items-center flex-col gap-5">
             <ShinyText 
-                text="Loading..." 
+                text={t("loading")}
                 disabled={false} 
                 speed={3} 
                 className='font-bold text-5xl' 

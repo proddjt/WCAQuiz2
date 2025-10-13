@@ -1,84 +1,86 @@
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@heroui/react";
 import {Table, TableHeader, TableBody, TableColumn, TableRow, TableCell} from "@heroui/table";
+import { useTranslation } from "react-i18next";
 
 export default function Modale({isOpen, onOpenChange} : {isOpen: any, onOpenChange: any}) {
+    const { t } = useTranslation();
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior="inside" size="3xl">
             <ModalContent>
             {(onClose) => (
                 <>
-                <ModalHeader className="flex flex-col gap-1">Reveal Quiz – Game Rules</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1">{t("reveal_modal_title")}</ModalHeader>
                 <ModalBody>
-                    <h2 className="font-bold">Objective</h2>
-                    <p>Guess the identity of a randomly selected person based on progressively revealed information. The person is chosen according to the parameters selected in the previous setup screen.</p>
-                    <h2 className="font-bold">Scoring System</h2>
-                    <p>You have 10 attempts to guess correctly. Each attempt reveals more information but awards fewer points:</p>
+                    <h2 className="font-bold">{t("reveal_modal_heading_1")}</h2>
+                    <p>{t("reveal_modal_desc_1")}</p>
+                    <h2 className="font-bold">{t("reveal_modal_heading_2")}</h2>
+                    <p>{t("reveal_modal_desc_2")}</p>
                     <Table aria-label="Example static collection table">
                         <TableHeader>
-                            <TableColumn>Attempt</TableColumn>
-                            <TableColumn>Points</TableColumn>
-                            <TableColumn>Information Revealed</TableColumn>
+                            <TableColumn>{t("attempt")}</TableColumn>
+                            <TableColumn>{t("points")}</TableColumn>
+                            <TableColumn>{t("info_revealed")}</TableColumn>
                         </TableHeader>
                         <TableBody>
                             <TableRow key="1">
-                                <TableCell>1st</TableCell>
-                                <TableCell>10 pts</TableCell>
-                                <TableCell>No info shown <i>(except nationality in Italian Only mode)</i></TableCell>
+                                <TableCell>{t("1")}</TableCell>
+                                <TableCell>{t("10_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_1_desc_1")} <i>{t("reveal_modal_table_1_desc_2")}</i></TableCell>
                             </TableRow>
                             <TableRow key="2">
-                                <TableCell>2nd</TableCell>
-                                <TableCell>9 pts</TableCell>
-                                <TableCell>Gender revealed <i>(plus nationality if <strong>not</strong> in Italian Only mode)</i></TableCell>
+                                <TableCell>{t("2")}</TableCell>
+                                <TableCell>{t("9_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_2_desc_1")} <i>{t("reveal_modal_table_2_desc_2")} <strong>{t("reveal_modal_table_2_desc_3")}</strong> {t("reveal_modal_table_2_desc_4")}</i></TableCell>
                             </TableRow>
                             <TableRow key="3">
-                                <TableCell>3rd</TableCell>
-                                <TableCell>8 pts</TableCell>
-                                <TableCell>Number of competitions and championships</TableCell>
+                                <TableCell>{t("3")}</TableCell>
+                                <TableCell>{t("8_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_3_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="4">
-                                <TableCell>4th</TableCell>
-                                <TableCell>7 pts</TableCell>
-                                <TableCell>Number and types of medals won</TableCell>
+                                <TableCell>{t("4")}</TableCell>
+                                <TableCell>{t("7_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_4_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="5">
-                                <TableCell>5th</TableCell>
-                                <TableCell>6 pts</TableCell>
-                                <TableCell>Number and types of records held</TableCell>
+                                <TableCell>{t("5")}</TableCell>
+                                <TableCell>{t("6_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_5_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="6">
-                                <TableCell>6th</TableCell>
-                                <TableCell>5 pts</TableCell>
-                                <TableCell>Event names where the person has results</TableCell>
+                                <TableCell>{t("6")}</TableCell>
+                                <TableCell>{t("5_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_6_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="7">
-                                <TableCell>7th</TableCell>
-                                <TableCell>4 pts</TableCell>
-                                <TableCell>Year portion of the WCA ID</TableCell>
+                                <TableCell>{t("7")}</TableCell>
+                                <TableCell>{t("4_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_7_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="8">
-                                <TableCell>8th</TableCell>
-                                <TableCell>3 pts</TableCell>
-                                <TableCell>Full lists of competitions and championships</TableCell>
+                                <TableCell>{t("8")}</TableCell>
+                                <TableCell>{t("3_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_8_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="9">
-                                <TableCell>9th</TableCell>
-                                <TableCell>2 pts</TableCell>
-                                <TableCell>Averages table</TableCell>
+                                <TableCell>{t("9")}</TableCell>
+                                <TableCell>{t("2_pts")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_9_desc_1")}</TableCell>
                             </TableRow>
                             <TableRow key="10">
-                                <TableCell>10th</TableCell>
-                                <TableCell>1 pt</TableCell>
-                                <TableCell>Full results table including singles and averages</TableCell>
+                                <TableCell>{t("10")}</TableCell>
+                                <TableCell>{t("1_pt")}</TableCell>
+                                <TableCell>{t("reveal_modal_table_10_desc_1")}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
-                    <h2 className="font-bold">Time Limit</h2>
-                    <p>Each attempt has a 90-second timer.</p>
-                    <p>If time runs out, it counts as an incorrect guess and the next attempt begins automatically.</p>
+                    <h2 className="font-bold">{t("reveal_modal_heading_3")}</h2>
+                    <p>{t("reveal_modal_desc_3_1")}</p>
+                    <p>{t("reveal_modal_desc_3_2")}</p>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" variant="light" onPress={onClose}>
-                    Close
+                    {t("close")}
                     </Button>
                 </ModalFooter>
                 </>

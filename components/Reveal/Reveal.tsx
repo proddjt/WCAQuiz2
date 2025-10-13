@@ -28,6 +28,7 @@ import FinalModale from "@/components/Reveal/FinalModale";
 
 import '@/styles/quiz.css';
 import { RevealPerson } from "@/types";
+import { useTranslation } from "react-i18next";
 
 export default function Reveal({person, mode} : {person: RevealPerson, mode: string | null}) {
     const [year, setYear] = useState<string>("");
@@ -54,6 +55,8 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
     const [isSkip, setIsSkip] = useState(false);
     const [isSearchDisabled, setIsSearchDisabled] = useState(false);
     const [hasWon, setHasWon] = useState(false);
+
+    const {t} = useTranslation();
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {isOpen: isSkipOpen, onOpen: onSkipOpen, onOpenChange: onSkipOpenChange} = useDisclosure();
@@ -236,19 +239,19 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
         <div className="flex justify-center items-center flex-col gap-3 select-none w-full">
             <section className="w-full flex lg:flex-row flex-col justify-center lg:items-end items-center">
                 <div className="lg:w-1/6 w-full order-1">
-                    <p className="text-xl">Score: {11-attempts}</p>
+                    <p className="text-xl">{t("score")}: {11-attempts}</p>
                 </div>
                 <div className="lg:w-4/6 w-full lg:order-2 order-3">
                     <SearchBar mode={mode} handleAnswer={handleAnswer} isSearchDisabled={isSearchDisabled}/>
                 </div>
                 <div className="lg:w-1/6 w-full lg:order-3 order-2">
-                    <p className="text-xl">Time: {formatSecondsTime(time)}</p>
+                    <p className="text-xl">{t("time")}: {formatSecondsTime(time)}</p>
                 </div>
             </section>
             <section className="w-full flex justify-center items-center gap-5">
-                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>Skip Answer</Button>
-                <Button variant="faded" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>Reveal Answer</Button>
-                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>Start new</Button>
+                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
+                <Button variant="faded" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
+                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
             </section>
             
             <h2 className="font-semibold text-3xl lg:mb-15 mb-8 flex justify-center items-center lg:gap-5 gap-1 lg:flex-row flex-col">
@@ -260,11 +263,11 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
             <LazyLoad>
                 <img src={person?.avatarUrl} alt="Immagine avatar persona" className={`${showPhoto ? "" : "blur-xl grayscale"} lg:h-[300px] h-[180px]`}/>
             </LazyLoad>
-            <h3 className="font-semibold text-2xl mt-15 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">PERSONAL INFO <MdPersonSearch /></h3>
+            <h3 className="font-semibold text-2xl mt-15 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("personal_info")} <MdPersonSearch /></h3>
             <div className="flex lg:flex-nowrap flex-wrapjustify-center items-center lg:gap-20 gap-2">
                 <Card className={showNation ? "flash-highlight" : ""}>
                     <CardBody>
-                        <p className="flex lg:flex-row flex-col text-center justify-center items-center lg:text-md text-sm gap-1">Nation: <span className="flex items-center justify-center gap-2"><span className={showNation ? "" : "blur-md"}>{person?.country_name}</span>
+                        <p className="flex lg:flex-row flex-col text-center justify-center items-center lg:text-md text-sm gap-1">{t("nation")}: <span className="flex items-center justify-center gap-2"><span className={showNation ? "" : "blur-md"}>{person?.country_name}</span>
                             {
                                 showNation && <Flag code={ person?.country } width={20} height={15}/>
                             }
@@ -279,16 +282,16 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
                 </Card>
                 <Card className={showGender ? "flash-highlight" : ""}>
                     <CardBody>
-                        <p className="lg:text-md text-sm text-center">Gender: <span className={showGender ? "" : "blur-md"}>{person?.gender === "m" ? "Male" : "Female"}</span></p>
+                        <p className="lg:text-md text-sm text-center">{t("gender")}: <span className={showGender ? "" : "blur-md"}>{person?.gender === "m" ? "Male" : "Female"}</span></p>
                     </CardBody>
                 </Card>
             </div>
-            <h3 className="font-semibold text-2xl mt-15 text-[#0051BA] bg-[#001530] px-4 py-1 rounded-xl flex justify-center items-center gap-2">COMPETITION INFO <MdOutlineContentPasteSearch /></h3>
+            <h3 className="font-semibold text-2xl mt-15 text-[#0051BA] bg-[#001530] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("comp_info")} <MdOutlineContentPasteSearch /></h3>
             <div className="flex lg:flex-nowrap flex-wrap justify-center items-center lg:gap-20 gap-2 w-full">
                 <div className="lg:w-1/2 w-full flex justify-center items-center flex-col gap-5">
                     <Card className={showComps ? "flash-highlight" : ""}>
                         <CardBody>
-                            <p className="flex text-center lg:text-md text-sm jusitfy-center items-center gap-2">Number of competitions: <span className={showComps ? "" : "blur-md"}>{person?.numberOfCompetitions}</span></p>
+                            <p className="flex text-center lg:text-md text-sm jusitfy-center items-center gap-2">{t("comp_numb")}: <span className={showComps ? "" : "blur-md"}>{person?.numberOfCompetitions}</span></p>
                         </CardBody>
                     </Card>
                     <CompTable ids={person?.competitionIds} showCompsList={showCompList} />
@@ -296,13 +299,13 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
                 <div className="lg:w-1/2 w-full flex justify-center items-center flex-col gap-5">
                     <Card className={showComps ? "flash-highlight" : ""}>
                         <CardBody>
-                            <p className="flex text-center lg:text-md text-sm jusitfy-center items-center gap-2">Number of championships: <span className={showComps ? "" : "blur-md"}>{person?.numberOfChampionships}</span></p>
+                            <p className="flex text-center lg:text-md text-sm jusitfy-center items-center gap-2">{t("champ_numb")}: <span className={showComps ? "" : "blur-md"}>{person?.numberOfChampionships}</span></p>
                         </CardBody>
                     </Card>
                     <CompTable ids={person?.championshipIds} showCompsList={showCompList} />
                 </div>
             </div>
-            <h3 className="font-semibold text-2xl mt-15 text-[#C62535] bg-[#2c070b] px-4 py-1 rounded-xl flex justify-center items-center gap-2">MEDALS & RECORDS <FaMedal /></h3>
+            <h3 className="font-semibold text-2xl mt-15 text-[#C62535] bg-[#2c070b] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("med_and_rec")} <FaMedal /></h3>
             <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-20 gap-2 w-full">
                 <div className="lg:w-1/2 w-full flex justify-center items-center">
                     <MedalTable medals={person?.medals} showMedals={showMedals}/>
@@ -311,7 +314,7 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
                     <RecordTable records={person?.records} showRecords={showRecords}/>
                 </div>
             </div>
-            <h3 className="font-semibold text-2xl mt-15 text-[#029347] bg-[#002713] px-4 py-1 rounded-xl flex justify-center items-center gap-2">RESULTS <RiTimerFill /></h3>
+            <h3 className="font-semibold text-2xl mt-15 text-[#029347] bg-[#002713] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("results")} <RiTimerFill /></h3>
             <div className={`${showSingle || showAverage || showEvent ? "flash-highlight" : ""} flex justify-start items-start w-full overflow-x-auto`}>
                 <TimeTables times={person?.personal_records} showAverage={showAverage} showSingle={showSingle} showEvent={showEvent}/>
             </div>

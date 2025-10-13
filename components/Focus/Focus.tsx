@@ -26,6 +26,7 @@ import FinalModale from "@/components/Reveal/FinalModale";
 import { getIdYear } from "@/app/lib/functions";
 import { formatSecondsTime } from "@/app/lib/functions";
 import { checkRevealAnswer } from "@/app/lib/functions";
+import { useTranslation } from "react-i18next";
 
 export default function Focus ({person, mode} : {person: FocusPerson, mode: string | null}) {
 
@@ -93,6 +94,8 @@ export default function Focus ({person, mode} : {person: FocusPerson, mode: stri
                 break;
         }
     }
+
+    const {t} = useTranslation();
 
     function timeFinished() {
         if (attempts === 6) return;
@@ -207,19 +210,19 @@ export default function Focus ({person, mode} : {person: FocusPerson, mode: stri
         <div className="flex justify-center items-center flex-col gap-5 select-none w-full">
             <section className="w-full flex lg:flex-row flex-col justify-center lg:items-end items-center">
                 <div className="lg:w-1/6 w-full order-1">
-                    <p className="text-xl">Score: {6-attempts}</p>
+                    <p className="text-xl">{t("score")}: {6-attempts}</p>
                 </div>
                 <div className="lg:w-4/6 w-full lg:order-2 order-3">
                     <FocusSearchBar mode={mode} handleAnswer={handleAnswer} isSearchDisabled={isSearchDisabled}/>
                 </div>
                 <div className="lg:w-1/6 w-full lg:order-3 order-2">
-                    <p className="text-xl">Time: {formatSecondsTime(time)}</p>
+                    <p className="text-xl">{t("time")}: {formatSecondsTime(time)}</p>
                 </div>
             </section>
             <section className="w-full flex justify-center items-center gap-5">
-                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>Skip Answer</Button>
-                <Button variant="faded" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>Reveal Answer</Button>
-                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>Start new</Button>
+                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
+                <Button variant="faded" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
+                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
             </section>
             <h2 className="font-semibold text-3xl lg:mb-5 mb-8 flex justify-center items-center lg:gap-5 gap-1 lg:flex-row flex-col">
                 {
@@ -230,11 +233,11 @@ export default function Focus ({person, mode} : {person: FocusPerson, mode: stri
             <LazyLoad className="flex justify-center items-center">
                 <img src={person?.avatarUrl} alt="Avatar" className={`lg:h-[600px] lg:w-auto w-8/10 ${blur} ${blackWhite ? "grayscale" : ""} my-20`}/>
             </LazyLoad>
-            <h3 className="font-semibold text-2xl mt-5 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">PERSONAL INFO <MdPersonSearch /></h3>
+            <h3 className="font-semibold text-2xl mt-5 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("personal_info")} <MdPersonSearch /></h3>
             <div className="flex justify-center items-center gap-5 lg:flex-row flex-col">
                 <Card className={`${showNation ? "flash-highlight" : ""} lg:w-auto w-full`}>
                     <CardBody className="flex justify-center items-center">
-                        <p className="flex text-center justify-center items-center lg:text-lg text-md gap-1">Nation: <span className="flex items-center justify-center gap-2"><span className={showNation ? "" : "blur-md"}>{person?.country_name}</span>
+                        <p className="flex text-center justify-center items-center lg:text-lg text-md gap-1">{t("nation")}: <span className="flex items-center justify-center gap-2"><span className={showNation ? "" : "blur-md"}>{person?.country_name}</span>
                             {
                                 showNation && <Flag code={ person?.country } width={20} height={15}/>
                             }
@@ -249,17 +252,17 @@ export default function Focus ({person, mode} : {person: FocusPerson, mode: stri
                 </Card>
                 <Card className={`${showGender ? "flash-highlight" : ""} lg:w-auto w-full`}>
                     <CardBody>
-                        <p className="lg:text-lg text-md text-center">Gender: <span className={showGender ? "" : "blur-md"}>{person?.gender === "m" ? "Male" : "Female"}</span></p>
+                        <p className="lg:text-lg text-md text-center">{t("gender")}: <span className={showGender ? "" : "blur-md"}>{person?.gender === "m" ? "Male" : "Female"}</span></p>
                     </CardBody>
                 </Card>
             </div>
-            <h3 className="font-semibold text-2xl mt-5 text-[#0051BA] bg-[#001530] px-4 py-1 rounded-xl flex justify-center items-center gap-2">COMPETITION INFO <MdOutlineContentPasteSearch /></h3>
+            <h3 className="font-semibold text-2xl mt-5 text-[#0051BA] bg-[#001530] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("comp_info")} <MdOutlineContentPasteSearch /></h3>
             <Card className={`${showComps ? "flash-highlight" : ""}`}>
                 <CardBody>
-                    <p className="flex text-center lg:text-lg text-md jusitfy-center items-center gap-2">Number of competitions: <span className={showComps ? "" : "blur-md"}>{person?.numberOfCompetitions}</span></p>
+                    <p className="flex text-center lg:text-lg text-md jusitfy-center items-center gap-2">{t("comp_numb")}: <span className={showComps ? "" : "blur-md"}>{person?.numberOfCompetitions}</span></p>
                 </CardBody>
             </Card>
-            <h3 className="font-semibold text-2xl mt-5 text-[#029347] bg-[#002713] px-4 py-1 rounded-xl flex justify-center items-center gap-2">BEST RESULT(S) <RiTimerFill /></h3>
+            <h3 className="font-semibold text-2xl mt-5 text-[#029347] bg-[#002713] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("best_result")} <RiTimerFill /></h3>
             <TimeTables times={person?.personal_records} showTime={showTime} />
 
             <Modale isOpen={isOpen} onOpenChange={onOpenChange} />

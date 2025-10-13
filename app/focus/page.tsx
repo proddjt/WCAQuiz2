@@ -4,19 +4,21 @@ import { Select, SelectItem, Button } from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BlurText from "@/components/ReactBits/BlurText";
+import { useTranslation } from "react-i18next";
 
 export default function RevealPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState("IT");
+  const {t} = useTranslation();
 
   const modality = [
-    {key: "IT", label: "Italian Only", description: "Only Italian people can be selected"},
-    {key: "europe", label: "Europe", description: "Only European people can be selected"},
-    {key: "asia", label: "Asia", description: "Only Asian people can be selected"},
-    {key: "africa", label: "Africa", description: "Only African people can be selected"},
-    {key: "north-america", label: "North America", description: "Only North American people can be selected"},
-    {key: "south-america", label: "South America", description: "Only South American people can be selected"},
-    {key: "world", label: "Worldwide", description: "All people can be selected"},
+    {key: "IT", label: "Italian Only", description: t("it_desc")},
+    {key: "europe", label: "Europe", description: t("eu_desc")},
+    {key: "asia", label: "Asia", description: t("as_desc")},
+    {key: "africa", label: "Africa", description: t("af_desc")},
+    {key: "north-america", label: "North America", description: t("na_desc")},
+    {key: "south-america", label: "South America", description: t("sa_desc")},
+    {key: "world", label: "Worldwide", description: t("world_desc")},
   ];
 
   const modeDescription = modality.find(m => m.key === selectedMode)?.description ?? "";
@@ -28,7 +30,7 @@ export default function RevealPage() {
   return (
     <div className="flex justify-center items-center flex-col">
       <BlurText
-          text="Choose quiz mode"
+          text={t("focus_choose")}
           animateBy="words"
           direction="top"
           className="text-3xl md:text-6xl justify-center items-center"
@@ -45,8 +47,8 @@ export default function RevealPage() {
         description={modeDescription}
         defaultSelectedKeys={["IT"]}
         disallowEmptySelection={true}
-        label="Choose mode"
-        placeholder="Select a mode"
+        label={t("form_mode")}
+        placeholder={t("form_mode_placeholder")}
         >
           {modality.map((mode) => (
             <SelectItem key={mode.key}>{mode.label}</SelectItem>
@@ -55,7 +57,7 @@ export default function RevealPage() {
       </div>
       <div className="flex justify-center w-full">
         <Button color="primary" className="lg:w-1/4 w-1/2 lg:mt-0 mt-5" variant="ghost" onPress={startQuiz}>
-          Start quiz
+          {t("start")}
         </Button>
       </div>
     </div>

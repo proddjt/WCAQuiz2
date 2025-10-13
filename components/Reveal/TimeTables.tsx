@@ -1,17 +1,19 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@heroui/react";
 import { sortEventDataAsArray, formatTime } from "@/app/lib/functions";
+import { useTranslation } from "react-i18next";
 
 export default function TimeTables({times, showSingle, showAverage, showEvent} : {times: any, showSingle: boolean, showAverage: boolean, showEvent: boolean}) {
     const orderedEvents = sortEventDataAsArray(times);
+    const {t} = useTranslation();
     return (
         <Table isStriped aria-labelledby="Times table">
             <TableHeader>
-                <TableColumn>Event</TableColumn>
+                <TableColumn>{t("event")}</TableColumn>
                 <TableColumn>NR</TableColumn>
                 <TableColumn>CR</TableColumn>
                 <TableColumn>WR</TableColumn>
-                <TableColumn>Single</TableColumn>
-                <TableColumn>Average</TableColumn>
+                <TableColumn>{t("single")}</TableColumn>
+                <TableColumn>{t("average")}</TableColumn>
                 <TableColumn>WR</TableColumn>
                 <TableColumn>CR</TableColumn>
                 <TableColumn>NR</TableColumn>
