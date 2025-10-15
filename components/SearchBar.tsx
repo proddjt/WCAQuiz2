@@ -65,7 +65,7 @@ export default function SearchBar({ mode, handleAnswer, isSearchDisabled }: { mo
             <div>
               <p className="font-medium">{person.name}</p>
               <p className="text-xs text-default-500">
-                {person.wca_id} • {person.country.name}
+                {person.country.name}
               </p>
             </div>
           </div>

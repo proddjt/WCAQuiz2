@@ -17,7 +17,6 @@ import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { FaMedal } from "react-icons/fa";
 import { RiTimerFill } from "react-icons/ri";
 import { FaInfoCircle } from "react-icons/fa";
-import Modale from "@/components/Reveal/Modale";
 
 import ErrorAlert from "@/components/ErrorAlert";
 import TimeAlert from "@/components/TimeAlert";
@@ -25,6 +24,7 @@ import SkipAlert from "@/components/SkipAlert";
 import SkipModale from "@/components/SkipModale";
 import RevealModale from "@/components/RevealModale";
 import FinalModale from "@/components/Reveal/FinalModale";
+import Modale from "./Modale";
 
 import '@/styles/quiz.css';
 import { RevealPerson } from "@/types";
@@ -261,7 +261,7 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
                 <Button isIconOnly size="sm" variant="ghost" onPress={onOpen}><FaInfoCircle /></Button>
             </h2>
             <LazyLoad>
-                <img src={person?.avatarUrl} alt="Immagine avatar persona" className={`${showPhoto ? "" : "blur-xl grayscale"} lg:h-[300px] h-[180px]`}/>
+                <img src={showPhoto ? person?.avatarUrl : "https://www.wcaquiz.xyz/reveal.jpeg"} data-src={person?.avatarUrl} alt="Immagine avatar persona" className={`lg:h-[300px] h-[180px] ${showPhoto ? "" : "float-breeze"}`}/>
             </LazyLoad>
             <h3 className="font-semibold text-2xl mt-15 text-[#FF5800] bg-[#351200] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("personal_info")} <MdPersonSearch /></h3>
             <div className="flex lg:flex-nowrap flex-wrapjustify-center items-center lg:gap-20 gap-2">

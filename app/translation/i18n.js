@@ -142,9 +142,9 @@ const resources = {
             "reveal_ez" : "Facile",
             "reveal_ez_desc" : "La persona selezionata deve avere un minimo di 30 competizioni e deve essere almeno NR20 in almeno un evento.",
             "reveal_md" : "Media",
-            "reveal_md_desc" : "La persona selezionata deve avere un minimo di 20 competizioni e deve essere almeno tra NR21 e NR50 in almeno un evento.",
+            "reveal_md_desc" : "La persona selezionata deve avere un minimo di 20 competizioni e deve avere un ranking compreso tra NR21 e NR50 in almeno un evento.",
             "reveal_hd" : "Difficile",
-            "reveal_hd_desc" : "La persona selezionata deve avere un minimo di 15 competizioni e deve essere almeno tra NR51 e NR100 in almeno un evento.",
+            "reveal_hd_desc" : "La persona selezionata deve avere un minimo di 15 competizioni e deve avere un raking compreso tra NR51 e NR100 in almeno un evento.",
             "best_result" : "MIGLIOR RISULTATO/I",
 
             // REVEAL MODALE
