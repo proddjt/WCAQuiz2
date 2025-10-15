@@ -14,7 +14,7 @@ const resources = {
 
             // MAIN
             "main_title" : "Benvenuto in WCAQuiz",
-            "main_subtitle" : "Quante ne conosci sulla World Cubing Association? Scegli tra 3 diverse modalità di quiz e scopri quanto conosci i tuoi amici WCA!",
+            "main_subtitle" : "Quante ne conosci sulla World Cube Association? Scegli tra 3 diverse modalità di quiz e scopri quanto conosci i tuoi amici WCA!",
             "choose_mode" : "Scegli una modalità",
             "reveal_desc" : "Questa è la modalità quiz classica. Avrai 10 tentativi per indovinare una persona WCA. Per ogni tentativo errato appariranno nuovi indizi",
             "focus_desc" : "Questa modalità è basata sull'immagine di profilo della persona WCA. Avrai un'immagine completamente sfocata e 5 tentativi per indovinare correttamente la persona WCA. Per ogni tentativo errato appariranno nuovi indizi e l'immagine sarà meno sfocata.",
@@ -201,7 +201,7 @@ const resources = {
 
             // MAIN
             "main_title" : "Welcome to WCAQuiz",
-            "main_subtitle" : "How much do you know about World Cubing Association? Choose between 3 different quiz modes and see how well you know your WCA friends!",
+            "main_subtitle" : "How much do you know about World Cube Association? Choose between 3 different quiz modes and see how well you know your WCA friends!",
             "choose_mode" : "Choose a quiz mode",
             "reveal_desc" : "This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt",
             "focus_desc" : "This quiz mode is based on person's WCA profile images. You will have a completely blurred image and 5 attempts to correctly guess a WCA person. Hints and less-blurry image will be given at every wrong attempt",
