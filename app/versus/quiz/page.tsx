@@ -38,7 +38,6 @@ export default function VersusQuiz() {
             const fetch = async () => {
                 try {
                     const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: tempPerson.id, firstPersonResult: tempPerson.result });
-                    console.log(data);
                     setTempPerson(data);
                 } catch (error) {
                     onErrorOpen();
@@ -78,11 +77,9 @@ export default function VersusQuiz() {
             const fetch = async () => {
                 try {
                 const data1 = await fetchVersusFirstPerson({ mode, event, result });
-                console.log(data1);
                 setPerson(data1);
                 const data2 = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: data1?.id, firstPersonResult: data1?.result });
                 setSecondPerson(data2);
-                console.log(data2);
                 const tempData = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: data2?.id, firstPersonResult: data2?.result });
                 setTempPerson(tempData);
                 } catch (error) {
