@@ -35,6 +35,16 @@ export default function VersusQuiz() {
 
     function checkAnswer(a: string, b: string){
         if (checkLower(a, b)){
+            const fetch = async () => {
+                try {
+                    const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: tempPerson.id, firstPersonResult: tempPerson.result });
+                    console.log(data);
+                    setTempPerson(data);
+                } catch (error) {
+                    onErrorOpen();
+                }
+            }
+            fetch();
             setIsCorrect(true);
             setIsShown(true);
             setScore(score + 1);
@@ -43,7 +53,7 @@ export default function VersusQuiz() {
                 setIsShown(false);
                 setPerson(secondPerson);
                 setSecondPerson(tempPerson);
-            }, 3000)
+            }, 5000)
         } else {
             stopGame();
         }
@@ -65,48 +75,25 @@ export default function VersusQuiz() {
         setIsShown(false);
         setScore(0);
         if (mode && event && result) {
-        const fetchFirst = async () => {
-            try {
-            const data = await fetchVersusFirstPerson({ mode, event, result });
-            setPerson(data);
-            } catch (error) {
-                onErrorOpen();
+            const fetch = async () => {
+                try {
+                const data1 = await fetchVersusFirstPerson({ mode, event, result });
+                console.log(data1);
+                setPerson(data1);
+                const data2 = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: data1?.id, firstPersonResult: data1?.result });
+                setSecondPerson(data2);
+                console.log(data2);
+                const tempData = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: data2?.id, firstPersonResult: data2?.result });
+                setTempPerson(tempData);
+                } catch (error) {
+                    onErrorOpen();
+                }
             }
-        };
-        fetchFirst();
+            fetch();
         } else {
             console.warn('Parametri mancanti: mode o event o result');
         }
     }, []);
-
-    useEffect(() => {
-        if (mode && event && result) {
-            const fetchSecond = async () => {
-                try {
-                const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: person?.id, firstPersonResult: person?.result });
-                setSecondPerson(data);
-                } catch (error) {
-                    onErrorOpen();
-                }
-            };
-            const fetchTemp = async () => {
-                try {
-                    const data = await fetchVersusSecondPerson({ mode, event, result, firstPersonID: secondPerson?.id, firstPersonResult: secondPerson?.result });
-                    setTempPerson(data);
-                } catch (error) {
-                    onErrorOpen();
-                }
-                };
-            if (!secondPerson){
-                fetchSecond();
-            } else {
-                setSecondPerson(tempPerson);
-            }
-            fetchTemp();
-        } else {
-            console.warn('Parametri mancanti: mode o event o result o person.id');
-        }
-    }, [person, person?.id]);
 
     if (!person || !secondPerson) return <Loading />
 
