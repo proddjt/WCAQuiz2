@@ -1,4 +1,4 @@
-import { GoldrushComp } from "@/types";
+import { Gara } from "@/types";
 import { getBestRankedRecord, formatMonthBefore, formatYearsBefore, formatData, weightedRandomIndex } from "./functions";
 
 
@@ -212,7 +212,7 @@ export async function fetchGoldrushComp(mode: string){
     const unofficialURL = "https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api"
     const officialURL = "https://www.worldcubeassociation.org/api/v0"
     const today = new Date()
-    let gara: GoldrushComp | null = null;
+    let gara: Gara | null = null;
 
     const response = await fetch(`${unofficialURL}/competitions/IT.json`)
     const data = await response.json()
