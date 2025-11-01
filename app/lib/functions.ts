@@ -1,3 +1,5 @@
+import { Podium } from "@/types";
+
 export function sortEventDataAsArray(data: Record<string, any>): [string, any][] {
   const preferredOrder = [
     "333", "222", "444", "555", "666", "777",
@@ -167,6 +169,10 @@ export function checkRevealAnswer(guessId: string, answerId: string){
     return guessId === answerId
 }
 
+export function checkGoldrushAnswer(guessId: string, guessEvent: string, podiums: Podium[]){
+  return podiums.some(podium => podium.event === guessEvent && podium.first?.id === guessId);
+}
+
 export function getBestRankedRecord(personalRecords: Array<any>) {
   const allRecords = [];
 
@@ -214,4 +220,66 @@ export function getBestRankedRecord(personalRecords: Array<any>) {
 
 export function checkLower(a: string, b: string) {
   return a < b;
+}
+
+export function formatMonthBefore(date: any) {
+    var d = new Date(date),
+        month = '' + (d.getMonth()),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month < 10)  
+        month = '0' + month;
+    if (month == 0)
+        month = 12
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+export function formatYearsBefore(date: any, limit: number) {
+    var d = new Date(date),
+        month = '' + (d.getMonth()),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month < 10)  
+        month = '0' + month;
+    if (month == 0)
+        month = 12
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year-limit, month, day].join('-');
+}
+
+export function formatData(dataString: string) {
+  const mesi = [
+    'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+    'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+  ];
+
+  const [anno, mese, giorno] = dataString.split('-');
+  const nomeMese = mesi[parseInt(mese, 10) - 1];
+
+  return `${giorno} ${nomeMese} ${anno}`;
+}
+
+export function weightedRandomIndex(arrayLength: number, difficulty: string) {
+    const weights = [];
+    for (let i = 0; i < arrayLength; i++) {
+        if (difficulty == "hd") weights[i] = i > (2 * arrayLength) / 3 ? 3 : 1;
+        else weights[i] = 1
+    }
+    const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+
+    let random = Math.random() * totalWeight;
+
+    for (let i = 0; i < arrayLength; i++) {
+        if (random < weights[i]) return i;
+        random -= weights[i];
+    }
+
+    return arrayLength - 1;
 }

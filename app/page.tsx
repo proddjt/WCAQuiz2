@@ -40,6 +40,9 @@ export default function Home() {
         <Link href="/versus" className="text-center">
           <HomepageCard title="Versus" description={t("versus_desc")} image={Versus.src} animation="wind-sway"/>
         </Link>
+        <Link href="/" className="text-center">
+          <HomepageCard title="Work in progress" description={t("goldrush_desc")} image={"https://placeholder.pics/svg/1000x1000/DEDEDE/555555/WORK%20IN%20PROGRESS..."} animation=""/>
+        </Link>
       </div>
     </section>
   );

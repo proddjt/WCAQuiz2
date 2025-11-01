@@ -41,6 +41,8 @@ export default function VersusQuiz() {
                     setTempPerson(data);
                 } catch (error) {
                     onErrorOpen();
+                    console.log(error);
+                    
                 }
             }
             fetch();

@@ -1,5 +1,6 @@
-import { avatar } from "@heroui/theme";
-import { getBestRankedRecord } from "./functions";
+import { GoldrushComp } from "@/types";
+import { getBestRankedRecord, formatMonthBefore, formatYearsBefore, formatData, weightedRandomIndex } from "./functions";
+
 
 export async function fetchRevealPerson({difficulty, mode}: {difficulty: string, mode: string}) {
     const events = ["222", "333", "333fm", "333oh", "444", "555", "666", "777", "clock", "minx", "pyram", "skewb", "sq1", "333bf"]
@@ -200,4 +201,187 @@ export async function fetchSearchBar(name: string, mode: string) {
         return person.country?.continent_id === expectedContinent;
     });
     return filtered
+}
+
+const limits = [
+    {difficulty: "ez", part_limit: 100, year_limit: 3},
+    {difficulty: "md", part_limit: 60, year_limit: 8}
+]
+
+export async function fetchGoldrushComp(mode: string){
+    const unofficialURL = "https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api"
+    const officialURL = "https://www.worldcubeassociation.org/api/v0"
+    const today = new Date()
+    let gara: GoldrushComp | null = null;
+
+    const response = await fetch(`${unofficialURL}/competitions/IT.json`)
+    const data = await response.json()
+    const filteredData = data.items.filter ((item: any) => Date.parse(item.date.till) < Date.parse(formatMonthBefore(today)))
+    
+    let check = false
+    while (!check){
+        let podiums = []
+        let time = 0
+        const randomGara = filteredData[weightedRandomIndex(filteredData.length, mode)]
+        if (randomGara.isCanceled) return
+        const pResponse = await fetch(`${officialURL}/competitions/${randomGara.id}/competitors`)
+        const randomGaraPartecipanti = await pResponse.json()
+        if (mode == "ez"){
+            if (randomGaraPartecipanti.length > 120 || randomGara.name.includes("Italian Championship") || randomGara.name.includes("FMC Italy")){
+                for (const event of randomGara.events) {
+                    const response = await fetch(`${unofficialURL}/results/${randomGara.id}/${event}.json`);
+                    const data = await response.json();
+                    if (data.items.length >= 3){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                            second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                            third: {id: data.items[2].personId, position: data.items[2].position, best: data.items[2].best, average: data.items[2].average},
+                        });
+                    }else if (data.items.length === 2){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                            second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                        });
+                    }else if (data.items.length === 1){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                        });
+                    }else{
+                        podiums.push({
+                            event: event,
+                            first: null,
+                        });
+                    }
+                }
+                if (randomGara.events.length >= 10){
+                    time = 5
+                } else {
+                    time = randomGara.events.length * 0.5
+                }
+                const competitors = randomGaraPartecipanti.map((partecipante: any) => ({name: partecipante.name, id: partecipante.id}))
+                gara = {
+                    id: randomGara.id,
+                    nome: randomGara.name,
+                    data: `${formatData(randomGara.date.from)} - ${formatData(randomGara.date.till)}`,
+                    podiums: podiums,
+                    competitors: {
+                        count: competitors.length,
+                        competitors: competitors
+                    },
+                    location: randomGara.venue.address,
+                    events: randomGara.events,
+                    time: time
+                }
+                check = true
+            }
+        } else if (mode == "md") {
+            if (randomGaraPartecipanti.length >= 60 && !randomGara.name.includes("Italian Championship") && !randomGara.name.includes("FMC Italy")){
+                if(parseInt(randomGara.date.till.substring(0, 4)) >= parseInt(formatYearsBefore(today, 7).substring(0, 4))){
+                    for (const event of randomGara.events) {
+                        const response = await fetch(`${unofficialURL}/results/${randomGara.id}/${event}.json`);
+                        const data = await response.json();
+                        if (data.items.length >= 3){
+                            podiums.push({
+                                event: event,
+                                first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                                second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                                third: {id: data.items[2].personId, position: data.items[2].position, best: data.items[2].best, average: data.items[2].average},
+                            });
+                        }else if (data.items.length === 2){
+                            podiums.push({
+                                event: event,
+                                first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                                second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                            });
+                        }else if (data.items.length === 1){
+                            podiums.push({
+                                event: event,
+                                first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                            });
+                        }else{
+                            podiums.push({
+                                event: event,
+                                first: null,
+                            });
+                        }
+                    }
+                    if (randomGara.events.length >= 7){
+                        time = 7
+                    } else {
+                        time = randomGara.events.length
+                    }
+                    const competitors = randomGaraPartecipanti.map((partecipante: any) => ({name: partecipante.name, id: partecipante.id}))
+                    gara = {
+                        id: randomGara.id,
+                        nome: randomGara.name,
+                        data: `${formatData(randomGara.date.from)} - ${formatData(randomGara.date.till)}`,
+                        podiums: podiums,
+                        competitors: {
+                            count: competitors.length,
+                            competitors: competitors
+                        },
+                        location: randomGara.venue.address,
+                        events: randomGara.events,
+                        time: time
+                    }
+                    check = true
+                }
+            }
+        } else {
+            if (randomGaraPartecipanti.length > 2 && randomGaraPartecipanti.length < 60 && !randomGara.name.includes("Italian Championship") && !randomGara.name.includes("FMC Italy")){
+                for (const event of randomGara.events) {
+                    const response = await fetch(`${unofficialURL}/results/${randomGara.id}/${event}.json`);
+                    const data = await response.json();
+                    if (data.items.length >= 3){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                            second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                            third: {id: data.items[2].personId, position: data.items[2].position, best: data.items[2].best, average: data.items[2].average},
+                        });
+                    }else if (data.items.length === 2){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                            second: {id: data.items[1].personId, position: data.items[1].position, best: data.items[1].best, average: data.items[1].average},
+                        });
+                    }else if (data.items.length === 1){
+                        podiums.push({
+                            event: event,
+                            first: {id: data.items[0].personId, position: data.items[0].position, best: data.items[0].best, average: data.items[0].average},
+                        });
+                    }else{
+                        podiums.push({
+                            event: event,
+                            first: null,
+                        });
+                    }
+                }
+                if (randomGara.events.length > 10){
+                    time = 10
+                } else {
+                    time = randomGara.events.length * 1.5
+                }
+                const competitors = randomGaraPartecipanti.map((partecipante: any) => ({name: partecipante.name, id: partecipante.id}))
+                gara = {
+                    id: randomGara.id,
+                    nome: randomGara.name,
+                    data: `${formatData(randomGara.date.from)} - ${formatData(randomGara.date.till)}`,
+                    podiums: podiums,
+                    competitors: {
+                        count: competitors.length,
+                        competitors: competitors
+                    },
+                    location: randomGara.city,
+                    events: randomGara.events,
+                    time: time
+                }
+                check = true
+            }
+        }
+    }
+    return gara
 }

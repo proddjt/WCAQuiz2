@@ -31,3 +31,42 @@ export type RevealPerson = Object & {
   records: Object,
   avatarUrl: string
 }
+
+interface PodiumAthlete {
+  id: string;
+  position: number;
+  best: number;
+  average: number;
+}
+
+export interface Podium {
+  event: string;
+  first: PodiumAthlete | null;
+  second?: PodiumAthlete;
+  third?: PodiumAthlete;
+}
+
+export interface guessedEvent{
+  [key: string]: boolean
+}
+
+interface Competitor {
+  id: string;
+  name: string;
+}
+
+interface CompetitorGroup {
+  count: number;
+  competitors: Competitor[];
+}
+
+export interface Gara {
+  id: string;
+  nome: string;
+  data: string;
+  podiums: Podium[];
+  competitors: CompetitorGroup;
+  location: string;
+  events: string[];
+  time: number;
+}
