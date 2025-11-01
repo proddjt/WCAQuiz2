@@ -7,7 +7,7 @@ import { Gara } from "@/types";
 
 export default async function GoldrushQuiz(props: { params: Promise<{difficulty: string }> }) {
     const { difficulty } = await props.params;
-    let comp: GoldrushComp | null | undefined= null;
+    let comp: Gara | null | undefined= null;
 
     if (difficulty) {
         try {
