@@ -228,10 +228,10 @@ export function formatMonthBefore(date: any) {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (month < 10)  
+    if (parseFloat(month) < 10)  
         month = '0' + month;
-    if (month == 0)
-        month = 12
+    if (parseFloat(month) == 0)
+        month = '12'
     if (day.length < 2) 
         day = '0' + day;
 
@@ -244,10 +244,10 @@ export function formatYearsBefore(date: any, limit: number) {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (month < 10)  
+    if (parseFloat(month) < 10)  
         month = '0' + month;
-    if (month == 0)
-        month = 12
+    if (parseFloat(month) == 0)
+        month = '12'
     if (day.length < 2) 
         day = '0' + day;
 
