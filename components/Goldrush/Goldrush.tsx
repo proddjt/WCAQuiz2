@@ -200,10 +200,10 @@ export default function Goldrush({comp}: {comp: Gara}) {
                     <p className="text-xl">{t("time")}: {formatSecondsTime(time)}</p>
                 </div>
             </section>
-            <section className="w-full flex justify-center items-center gap-5">
-                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
-                <Button variant="faded" color="danger" onPress={onGoldrushOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
-                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
+            <section className="w-full flex lg:flex-row flex-col justify-center items-center gap-5">
+                <Button variant="faded" className="lg:w-auto w-full" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
+                <Button variant="faded" className="lg:w-auto w-full" color="danger" onPress={onGoldrushOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
+                <Button variant="faded" className="lg:w-auto w-full" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
             </section>
             
             <h2 className="font-semibold text-3xl mb-5 flex justify-center items-center lg:gap-5 gap-1 lg:flex-row flex-col">
