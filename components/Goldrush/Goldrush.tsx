@@ -232,7 +232,7 @@ export default function Goldrush({comp}: {comp: Gara}) {
                 </Card>
             </div>
             <h3 className="font-semibold text-2xl mt-5 text-[#0051BA] bg-[#001530] px-4 py-1 rounded-xl flex justify-center items-center gap-2">{t("podiums_comps")} <FaMedal /></h3>
-            <div className="flex lg:flex-nowrap flex-wrap justify-center items-center lg:gap-20 gap-2 w-full">
+            <div className="flex lg:flex-nowrap flex-wrap justify-center items-center lg:gap-20 gap-10 w-full">
                 <div className="lg:w-2/3 w-full flex justify-center items-center">
                     <PodiumTable podiums={comp?.podiums} competitors={comp?.competitors.competitors} showThird={showThird} showSecond={showSecond} showFirst={showFirst} handleAnswer={handleAnswer} guessedEvents={guessedEvents}/>
                 </div>
