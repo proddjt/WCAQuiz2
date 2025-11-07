@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 export default function CompetitorsTable({competitors, showList} : {competitors: any, showList: boolean}) {
     const {t} = useTranslation();
     return (
-        <Table isStriped aria-labelledby="Competitors table" className={`${showList ? "flash-highlight" : ""} h-[500px]`}>
+        <Table isStriped aria-labelledby="Competitors table" className={`${showList ? "flash-highlight" : ""} h-[500px] max-w-[100vw] overflow-x-scroll`}>
             <TableHeader>
                 <TableColumn>{t("name")}</TableColumn>
                 <TableColumn>WCA ID</TableColumn>
