@@ -248,10 +248,10 @@ export default function Reveal({person, mode} : {person: RevealPerson, mode: str
                     <p className="text-xl">{t("time")}: {formatSecondsTime(time)}</p>
                 </div>
             </section>
-            <section className="w-full flex justify-center items-center gap-5">
-                <Button variant="faded" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
-                <Button variant="faded" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
-                <Button variant="faded" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
+            <section className="w-full flex lg:flex-row flex-col justify-center items-center gap-5">
+                <Button variant="faded" className="lg:w-auto w-full" color="warning" onPress={onSkipOpen} isDisabled={isSearchDisabled}>{t("skip")}</Button>
+                <Button variant="faded" className="lg:w-auto w-full" color="danger" onPress={onRevealOpen} isDisabled={isSearchDisabled}>{t("reveal")}</Button>
+                <Button variant="faded" className="lg:w-auto w-full" color="primary" onPress={() => startAgain()} isDisabled={!isSearchDisabled}>{t("start_new")}</Button>
             </section>
             
             <h2 className="font-semibold text-3xl lg:mb-15 mb-8 flex justify-center items-center lg:gap-5 gap-1 lg:flex-row flex-col">
