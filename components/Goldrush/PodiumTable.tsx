@@ -7,7 +7,7 @@ import GoldrushSearchBar from "./GoldrushSearchBar";
 export default function PodiumTable({podiums, competitors, showThird, showSecond, showFirst, handleAnswer, guessedEvents} : {podiums: Podium[], competitors: any, showThird: boolean, showSecond: boolean, showFirst: boolean, handleAnswer: Function, guessedEvents: any}) {
     const {t} = useTranslation();
     return (
-        <Table isStriped aria-labelledby="Podiums table" className={`${showFirst || showSecond || showThird ? "flash-highlight" : ""} h-[500px]`}>
+        <Table isStriped aria-labelledby="Podiums table" className={`${showFirst || showSecond || showThird ? "flash-highlight" : ""} h-[500px] max-w-[100vw] overflow-x-scroll`}>
             <TableHeader>
                 <TableColumn>{t("event")}</TableColumn>
                 <TableColumn>{t("first")}</TableColumn>
