@@ -8,6 +8,7 @@ import Logo from "@/public/wcaquiz_logo.png"
 import Versus from "@/public/versus.jpeg"
 import Focus from "@/public/focus.jpeg"
 import Reveal from "@/public/reveal.jpeg"
+import Goldrush from '@/public/goldrush.jpeg'
 import '@/styles/homepage.css';
 
 
@@ -40,8 +41,8 @@ export default function Home() {
         <Link href="/versus" className="text-center">
           <HomepageCard title="Versus" description={t("versus_desc")} image={Versus.src} animation="wind-sway"/>
         </Link>
-        <Link href="/" className="text-center">
-          <HomepageCard title="Work in progress" description={t("goldrush_desc")} image={"https://placeholder.pics/svg/1000x1000/DEDEDE/555555/WORK%20IN%20PROGRESS..."} animation=""/>
+        <Link href="/goldrush" className="text-center">
+          <HomepageCard title="Goldrush" description={t("goldrush_desc")} image={Goldrush.src} animation="float-breeze"/>
         </Link>
       </div>
     </section>

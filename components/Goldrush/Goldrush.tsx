@@ -70,13 +70,21 @@ export default function Goldrush({comp}: {comp: Gara}) {
     }
 
     function timeFinished() {
+        setStage(4)
         if (correctAnswers === comp.podiums.length) return;
         setIsTimeFinished(true);
         setTimeout(() => setIsTimeFinished(false), 3000);
     }
 
     function skipAnswer() {
-        setStage(prev => prev+1);
+        if (stage === 3) {
+            setTime(0)
+            timeFinished();
+            stopGame(4);
+        }
+        else if (stage === 2) setTime((comp.time * 60) * 0.3)
+        else if (stage === 1) setTime((comp.time * 60) * 0.5)
+        else if (stage === 0) setTime((comp.time * 60) * 0.6)
         showSkipAlert();
     }
 
@@ -168,19 +176,21 @@ export default function Goldrush({comp}: {comp: Gara}) {
     }
 
     useEffect(() => {
-        switch (stage) {
-            case 1:
-                setTime((comp.time * 60) * 0.6);
-                break;
-            case 2:
-                setTime((comp.time * 60) * 0.5);
-                break;
-            case 3:
-                setTime((comp.time * 60) * 0.3);
-                break;
+        if (time === (comp.time * 60) * 0.6){
+            setStage(1);
+            showSkipAlert();
         }
-        hints();
-    }, [stage]);
+        else if (time === (comp.time * 60) * 0.5){
+            setStage(2);
+            showSkipAlert();
+        } else if (time === (comp.time * 60) * 0.3){
+            setStage(3);
+            showSkipAlert();
+        }
+        else if (time === 0){
+            timeFinished();
+        }
+    }, [time])
 
     useEffect(() => {
         if (correctAnswers === comp.podiums.length) {
@@ -189,6 +199,11 @@ export default function Goldrush({comp}: {comp: Gara}) {
             showCorrectAlert();
         }
     }, [correctAnswers]);
+
+    useEffect(() => {
+        if (stage === 4) return
+        hints(); 
+    }, [stage]);
     
     return(
         <div className="flex justify-center items-center flex-col gap-3 select-none w-full">

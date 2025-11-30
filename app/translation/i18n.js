@@ -19,7 +19,7 @@ const resources = {
             "reveal_desc" : "Questa è la modalità quiz classica. Avrai 10 tentativi per indovinare una persona WCA. Per ogni tentativo errato appariranno nuovi indizi",
             "focus_desc" : "Questa modalità è basata sull'immagine di profilo della persona WCA. Avrai un'immagine completamente sfocata e 5 tentativi per indovinare correttamente la persona WCA. Per ogni tentativo errato appariranno nuovi indizi e l'immagine sarà meno sfocata.",
             "versus_desc" : "Questa modalità è simile ad Higher or Lower. Scegli un evento WCA e appariranno due persone. Dovrai scegliere chi dei due ha il singolo o la media ufficiale più bassa in quell'evento",
-            "goldrush_desc" : "Nuova modalità in arrivo...",
+            "goldrush_desc" : "Questa modaltà consiste in una sfida nella quale bisogna indovinare tutti i vincitori di oro in una competizione.",
 
             // GENERAL
             "loading" : "Caricamento...",
@@ -250,7 +250,7 @@ const resources = {
             "reveal_desc" : "This is the classic quiz mode. You will have 10 attempts to correctly guess a WCA person. Hints will appear at every wrong attempt",
             "focus_desc" : "This quiz mode is based on person's WCA profile images. You will have a completely blurred image and 5 attempts to correctly guess a WCA person. Hints and less-blurry image will be given at every wrong attempt",
             "versus_desc" : "Sort of higher or lower quiz. You can choose a WCA event and two persons will appear. You will have to choose which person has a lower official average or single time on that event",
-            "goldrush_desc" : "New mode on the way...",
+            "goldrush_desc" : "This mode consists in a competition in which you have to guess all the gold winners in a competition.",
 
             // GENERAL
             "loading" : "Loading...",

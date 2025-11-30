@@ -1,4 +1,4 @@
-import { getEventFullName } from "@/app/lib/functions";
+import { getEventFullName, sortEventDataAsArray } from "@/app/lib/functions";
 import { guessedEvent, Podium } from "@/types";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@heroui/react";
 import { useTranslation } from "react-i18next";
@@ -29,7 +29,7 @@ export default function PodiumTable({podiums, competitors, showThird, showSecond
                                         {competitors?.find((competitor: any) => competitor.id === podium.first?.id)?.name}
                                     </TableCell>
                                     :
-                                    <TableCell>
+                                    <TableCell className="min-w-[200px]">
                                         <GoldrushSearchBar event={podium.event} handleAnswer={handleAnswer} isSearchDisabled={false} />
                                     </TableCell>
                                 :
